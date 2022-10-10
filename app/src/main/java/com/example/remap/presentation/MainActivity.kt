@@ -1,17 +1,16 @@
-package com.example.remap
+package com.example.remap.presentation
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.asLiveData
 import com.example.remap.R
+import com.example.remap.data.PropertyDB
+import com.example.remap.data.entity.Property
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -21,7 +20,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter
 import com.google.android.gms.maps.model.Marker
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -52,18 +50,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     var batteryFlag = false;
     var clothesFlag = false;
 
-    val rostov = LatLng(47.233, 39.700)
-
-    val second_marker = LatLng(47.234, 39.700)
 
     val TAG = "DEBUGVERSION"
 
-    private var lastTouchedMarker: Marker? = null;
+    private var lastTouchedMarker: Marker? = null
+
+    val ItemList = ArrayList<Property>()
+
 
     internal inner class CustomInfoWindowAdapter: InfoWindowAdapter {
 
         private val window: View = layoutInflater.inflate(R.layout.custom_info_window, null)
-        private val contents: View = layoutInflater.inflate(R.layout.custom_info_window, null)
 
 
         override fun getInfoContents(marker: Marker): View? {
@@ -117,6 +114,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         ClothesCard = findViewById(R.id.ClothesCard)
         ClothesImage = findViewById(R.id.clothesImage)
+
 
         PlasticCard.setOnClickListener{
             if (plasticFlag == false){
@@ -198,28 +196,33 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     }
 
+    fun CreateMarker(name: String?, latitude: Double?, longitude: Double?, description: String?) : Marker? {
+        return mMap.addMarker(
+            MarkerOptions()
+                .position(LatLng(latitude!!,longitude!!))
+                .title(name).snippet(description)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
         mMap.setInfoWindowAdapter(CustomInfoWindowAdapter())
 
-        mMap.addMarker(
-            MarkerOptions()
-                .position(second_marker)
-                .title("Second Marker")
-                .snippet("This is the second marker")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
-
-        mMap.addMarker(
-            MarkerOptions()
-                .position(rostov)
-                .title("Rostov")
-                .snippet("Hello World")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
+        val db = PropertyDB.getDB(this)
+        db.getPropertyDao().getAllProperties().asLiveData().observe(this){ list ->
+            list.forEach{
+                ItemList.add(it)
+            }
+            Log.d("123", "inside ${ItemList.size}")
+            for (i in 0 .. ItemList.size - 1){
+                CreateMarker(ItemList.get(i).propertyName, ItemList.get(i).propertyLatitude, ItemList.get(i).propertyLongitude, ItemList.get(i).propertyDescription)
+            }
+        }
 
         mMap.setOnMarkerClickListener(this)
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(rostov, 16f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(47.234, 39.700), 14.5f))
 
         mMap.uiSettings.setMapToolbarEnabled(false)
     }
