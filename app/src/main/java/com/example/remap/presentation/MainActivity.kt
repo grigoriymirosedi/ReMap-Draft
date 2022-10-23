@@ -7,10 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.asLiveData
 import com.example.remap.R
-import com.example.remap.data.PropertyDB
-import com.example.remap.data.entity.Property
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -20,10 +17,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter
 import com.google.android.gms.maps.model.Marker
+import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
+
 
     private lateinit var PlasticCard: CardView
     private lateinit var PlasticImage: ImageView
@@ -50,12 +49,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     var batteryFlag = false;
     var clothesFlag = false;
 
+    var PropertyList = arrayListOf<Properties>()
 
     val TAG = "DEBUGVERSION"
 
-    private var lastTouchedMarker: Marker? = null
+    var firebaseDatabase = FirebaseDatabase.getInstance().getReference("Properties")
 
-    val ItemList = ArrayList<Property>()
+    private var lastTouchedMarker: Marker? = null
 
 
     internal inner class CustomInfoWindowAdapter: InfoWindowAdapter {
@@ -96,6 +96,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         var mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        readData()
+
 
         PlasticCard = findViewById(R.id.PlasticCard)
         PlasticImage = findViewById(R.id.plasticImage)
@@ -114,7 +116,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         ClothesCard = findViewById(R.id.ClothesCard)
         ClothesImage = findViewById(R.id.clothesImage)
-
 
         PlasticCard.setOnClickListener{
             if (plasticFlag == false){
@@ -196,35 +197,41 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     }
 
-    fun CreateMarker(name: String?, latitude: Double?, longitude: Double?, description: String?) : Marker? {
-        return mMap.addMarker(
-            MarkerOptions()
-                .position(LatLng(latitude!!,longitude!!))
-                .title(name).snippet(description)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
-    }
-
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
         mMap.setInfoWindowAdapter(CustomInfoWindowAdapter())
-
-        val db = PropertyDB.getDB(this)
-        db.getPropertyDao().getAllProperties().asLiveData().observe(this){ list ->
-            list.forEach{
-                ItemList.add(it)
-            }
-            Log.d("123", "inside ${ItemList.size}")
-            for (i in 0 .. ItemList.size - 1){
-                CreateMarker(ItemList.get(i).propertyName, ItemList.get(i).propertyLatitude, ItemList.get(i).propertyLongitude, ItemList.get(i).propertyDescription)
-            }
-        }
 
         mMap.setOnMarkerClickListener(this)
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(47.234, 39.700), 14.5f))
 
         mMap.uiSettings.setMapToolbarEnabled(false)
+    }
+
+    fun readData(){
+
+        firebaseDatabase.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot){
+                PropertyList.clear()
+                Log.d("DATA", "Listerner has invoked")
+                for (ds in dataSnapshot.children){
+                    var Property = ds.getValue(Properties::class.java)
+                    PropertyList.add(Property!!)
+                }
+                for(property in PropertyList){
+                    mMap.addMarker(MarkerOptions()
+                        .title(property.property_name)
+                        .snippet(property.property_description)
+                        .position(LatLng(property.property_latitude, property.property_longitude))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
+                }
+            }
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
     }
 
     /* Changes the color of selected marker */
