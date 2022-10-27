@@ -29,6 +29,8 @@ import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter
 import com.google.android.gms.maps.model.Marker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import java.util.*
+
 private lateinit var binding: ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -105,9 +107,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
 
-        // Здесь происходит ошибка
         com.example.remap.binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(com.example.remap.binding.root)
 
@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMarkerClick(p0: Marker): Boolean {
         TODO("Not yet implemented")
     }
-//        var mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+//    var mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 //        mapFragment.getMapAsync(this)
 //
 //        PlasticCard = findViewById(R.id.PlasticCard)

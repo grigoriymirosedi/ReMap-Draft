@@ -29,7 +29,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#E4F4E5"
             android:gravity="start"
             android:orientation="horizontal">
@@ -46,7 +46,7 @@
             <TextView
                 android:id="@+id/snippet"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="6"
                 android:ellipsize="end"

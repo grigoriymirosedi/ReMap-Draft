@@ -16,22 +16,31 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import com.example.remap.R
+import com.example.remap.data.Properties
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import java.util.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private lateinit var mMap: GoogleMap
 
-    val rostov = LatLng(47.233, 39.700)
+    var INITIALIZE_POSITION = LatLng(47.23,39.72)
+    //Ссылка на нашу базу данных: https://console.firebase.google.com/project/remap-1faaf/database/remap-1faaf-default-rtdb/data
+    //для того, чтобы получить доступ, отправьте в лс мне свой email и я вам открою доступ, по другому никак :(
+    var firebaseDatabase = FirebaseDatabase.getInstance().getReference("Properties")
+    var PropertyList = arrayListOf<Properties>()
 
-    val second_marker = LatLng(47.234, 39.700)
 
-    val TAG = "DEBUGVERSION"
 
     private var lastTouchedMarker: Marker? = null;
 
@@ -85,6 +94,12 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        var mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+
+        //Initializing map...
+        mapFragment.getMapAsync(this)
+
+        readData()
 
 
         return root
@@ -95,34 +110,20 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    fun onMapReady(googleMap: GoogleMap) {
+    //Initialize the map
+    override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
         mMap.setInfoWindowAdapter(CustomInfoWindowAdapter())
-
-        mMap.addMarker(
-            MarkerOptions()
-                .position(second_marker)
-                .title("Second Marker")
-                .snippet("This is the second marker")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
-
-        mMap.addMarker(
-            MarkerOptions()
-                .position(rostov)
-                .title("Rostov")
-                .snippet("Hello World")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
-
         mMap.setOnMarkerClickListener(this)
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(rostov, 16f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(INITIALIZE_POSITION, 14.5f))
 
         mMap.uiSettings.setMapToolbarEnabled(false)
     }
 
     /* Changes the color of selected marker */
-    fun onMarkerClick(marker: Marker): Boolean {
+    override fun onMarkerClick(marker: Marker): Boolean {
         if (lastTouchedMarker == null){
             lastTouchedMarker = marker
         }
@@ -136,9 +137,29 @@ class HomeFragment : Fragment() {
         return false
     }
 
+    fun readData(){
+        firebaseDatabase.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot){
+                PropertyList.clear()
+                Log.d("DATA", "Listerner has invoked")
+                for (ds in dataSnapshot.children){
+                    var Property = ds.getValue(Properties::class.java)
+                    PropertyList.add(Property!!)
+                }
+                for(property in PropertyList){
+                    mMap.addMarker(MarkerOptions()
+                        .title(property.property_name)
+                        .snippet(property.property_description)
+                        .position(LatLng(property.property_latitude, property.property_longitude))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
+                }
+            }
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+            }
+        })
+    }
 
-}
-private fun GoogleMap.setOnMarkerClickListener(homeFragment: HomeFragment) {
-    TODO("Not yet implemented")
+
+
 }
 
