@@ -91,6 +91,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -148,10 +150,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 }
                 for(property in PropertyList){
                     mMap.addMarker(MarkerOptions()
-                        .title(property.property_name)
-                        .snippet(property.property_description)
-                        .position(LatLng(property.property_latitude, property.property_longitude))
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
+                            .title(property.property_name)
+                            .snippet(property.property_description +
+                                    "\n\n График работы: " + property.property_office_hours +
+                                    "\n Контакты: " + property.property_contacts +
+                                    "\n Адрес: " + property.property_adress)
+                            .position(LatLng(property.property_latitude, property.property_longitude))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
                 }
             }
             override fun onCancelled(dataSnapshot: DatabaseError) {
