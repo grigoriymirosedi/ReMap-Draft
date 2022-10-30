@@ -14,6 +14,7 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.remap.R
 import com.example.remap.data.Properties
