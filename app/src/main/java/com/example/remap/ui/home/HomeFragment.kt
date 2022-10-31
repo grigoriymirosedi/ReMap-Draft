@@ -1,6 +1,7 @@
 package com.example.remap.ui.home
 
 import android.graphics.Color
+import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
