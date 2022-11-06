@@ -166,13 +166,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 }
                 for(property in PropertyList){
                     mMap.addMarker(MarkerOptions()
-                            .title(property.property_name)
-                            .snippet(property.property_description +
-                                    "\n\n График работы: " + property.property_office_hours +
-                                    "\n Контакты: " + property.property_contacts +
-                                    "\n Адрес: " + property.property_adress)
-                            .position(LatLng(property.property_latitude, property.property_longitude))
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
+                        .title(property.property_name)
+                        .snippet(property.property_description +
+                                "\n\nГрафик работы: " + property.property_office_hours +
+                                "\nКонтакты: " + property.property_contacts +
+                                "\nАдрес: " + property.property_adress)
+                        .position(LatLng(property.property_latitude, property.property_longitude))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
                 }
             }
             override fun onCancelled(dataSnapshot: DatabaseError) {
