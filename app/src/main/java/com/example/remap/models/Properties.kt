@@ -1,4 +1,4 @@
-package com.example.remap.data
+package com.example.remap.models
 
 data class Properties(
         var property_adress: String,

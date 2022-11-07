@@ -1,6 +1,5 @@
 package com.example.remap.ui.home
 
-import android.graphics.Color
 import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,15 +9,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.remap.databinding.FragmentHomeBinding
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.util.Log
-import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import com.example.remap.R
-import com.example.remap.data.Properties
+import com.example.remap.models.Properties
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -31,7 +25,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import java.util.*
 
 class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private lateinit var mMap: GoogleMap
