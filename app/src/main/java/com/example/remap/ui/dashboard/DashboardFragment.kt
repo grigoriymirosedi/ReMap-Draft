@@ -1,22 +1,26 @@
 package com.example.remap.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.remap.models.Article
 import com.example.remap.ArticleAdapter
+import com.example.remap.ArticleDetailActivity
 import com.example.remap.R
+import com.example.remap.RecyclerViewInterface
 import com.example.remap.databinding.FragmentDashboardBinding
 
 
 
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), RecyclerViewInterface{
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -49,7 +53,7 @@ class DashboardFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = ArticleAdapter(articleArrayList)
+        adapter = ArticleAdapter(articleArrayList, this)
         recyclerView.adapter = adapter
     }
 
@@ -59,6 +63,12 @@ class DashboardFragment : Fragment() {
     }
 
     fun InitializeData(){
-        articleArrayList = arrayListOf<Article>(Article(R.drawable.green_bulb60, "First tip for recycling"))
+        articleArrayList = arrayListOf<Article>(Article(R.drawable.green_bulb60, "First tip for recycling", "Test description"))
+    }
+
+    override fun onItemClick(position: Int) {
+        val intent = Intent(requireContext(), ArticleDetailActivity::class.java)
+        intent.putExtra("NAME", articleArrayList[position].description)
+        startActivity(intent)
     }
 }

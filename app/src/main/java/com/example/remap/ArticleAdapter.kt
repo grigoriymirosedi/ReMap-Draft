@@ -12,11 +12,10 @@ import com.example.remap.models.Article
 
 
 
-class ArticleAdapter(private val articleList: ArrayList<Article>) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+class ArticleAdapter(private val articleList: ArrayList<Article>, private val recyclerViewInterface: RecyclerViewInterface) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+    var recycleViewInterface : RecyclerViewInterface = recyclerViewInterface
 
-
-
-    class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageResource: ImageView = itemView.findViewById(R.id.image_resource)
         val textTitle: TextView = itemView.findViewById(R.id.title_text)
     }
@@ -36,6 +35,10 @@ class ArticleAdapter(private val articleList: ArrayList<Article>) : RecyclerView
         val currentItem = articleList[position]
         holder.imageResource.setImageResource(currentItem.imageResource)
         holder.textTitle.text = currentItem.title
+
+        holder.itemView.setOnClickListener{
+            recycleViewInterface.onItemClick(position)
+        }
     }
 
 
