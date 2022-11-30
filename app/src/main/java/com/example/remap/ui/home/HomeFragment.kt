@@ -10,7 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.remap.databinding.FragmentHomeBinding
 import android.util.Log
+import android.widget.Button
+import android.widget.HorizontalScrollView
+import android.widget.ListView
+import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.marginBottom
+import androidx.navigation.fragment.findNavController
 import com.example.remap.R
 import com.example.remap.models.Properties
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -25,6 +31,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+
 
 class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private lateinit var mMap: GoogleMap
@@ -96,10 +103,70 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         //Initializing map...
         mapFragment.getMapAsync(this)
 
+        val filterBtnPlastic: Button = root.findViewById(R.id.fBtnPlastic)
+        filterBtnPlastic.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //TODO
+            }
+        })
+
+        val filterBtnEcomob: Button = root.findViewById(R.id.fBtnEcomob)
+        filterBtnEcomob.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //TODO
+            }
+        })
+        val filterBtnClothes: Button = root.findViewById(R.id.fBtnClothes)
+        filterBtnClothes.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //TODO
+            }
+        })
+        val filterBtnBatteries: Button = root.findViewById(R.id.fBtnBatteries)
+        filterBtnBatteries.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //TODO
+            }
+        })
+
+        val filterBtnGlass: Button = root.findViewById(R.id.fBtnGlass)
+        filterBtnGlass.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //TODO
+            }
+        })
+
+        val filterBtnPaper: Button = root.findViewById(R.id.fBtnPaper)
+        filterBtnPaper.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //TODO
+            }
+        })
+
+        val filterBtnMetal: Button = root.findViewById(R.id.fBtnMetal)
+        filterBtnMetal.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //TODO
+            }
+        })
+
+        val filterBtnLight: Button = root.findViewById(R.id.fBtnLight)
+        filterBtnLight.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                //TODO
+            }
+        })
+
         readData()
 
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 
     override fun onDestroyView() {

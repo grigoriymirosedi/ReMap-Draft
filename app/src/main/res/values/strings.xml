@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">ReMap</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Карта</string>
+    <string name="title_dashboard">Статьи</string>
+    <string name="title_notifications">Маркировки</string>
+    <string name="plastic">пластик</string>
+    <string name="ecomob">экомобиль</string>
+    <string name="batteries">батарейки</string>
+    <string name="clothes">одежда</string>
+    <string name="glass">стекло</string>
+    <string name="paper">макулатура</string>
+    <string name="metal">металл</string>
+    <string name="light">лампы</string>
 </resources>
