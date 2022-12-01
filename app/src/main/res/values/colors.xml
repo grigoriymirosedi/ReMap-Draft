@@ -8,4 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_green">#47AA4E</color>
+    <color name="light_blue">#96D4DC</color>
+    <color name="dark_grey">#BCB6B6</color>
+    <color name="light_yellow">#F8EE95</color>
+    <color name="light_ecomob_green">#C2FF7C</color>
+    <color name="paper_color">#DFC9B7</color>
+    <color name="glass_color">#CDEFEE</color>
+    <color name="clothes_color">#A8B6A8</color>
+    <color name="batteries_color">#BBB6DC</color>
 </resources>
