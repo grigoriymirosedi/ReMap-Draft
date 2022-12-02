@@ -398,7 +398,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
             )
         }
-        else if (property.categoryPlastic){
+        if (property.categoryPlastic){
             PlasticCategory.add(
                 MarkerOptions()
                     .title(property.property_name)
@@ -412,7 +412,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
             )
         }
-        else if (property.categoryBatteries){
+        if (property.categoryBatteries){
             BatteriesCategory.add(
                 MarkerOptions()
                     .title(property.property_name)
@@ -426,7 +426,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
             )
         }
-        else if (property.categoryClothes){
+        if (property.categoryClothes){
             ClothesCategory.add(
                 MarkerOptions()
                     .title(property.property_name)
@@ -440,7 +440,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
             )
         }
-        else if (property.categoryGlass){
+        if (property.categoryGlass){
             GlassCategory.add(
                 MarkerOptions()
                     .title(property.property_name)
@@ -454,7 +454,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
             )
         }
-        else if (property.categoryLamps){
+        if (property.categoryLamps){
             LampsCategory.add(
                 MarkerOptions()
                     .title(property.property_name)
@@ -468,7 +468,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
             )
         }
-        else if (property.categoryMetal){
+        if (property.categoryMetal){
             MetalCategory.add(
                 MarkerOptions()
                     .title(property.property_name)
@@ -482,7 +482,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
             )
         }
-        else if (property.categoryPaper){
+        if (property.categoryPaper){
             PaperCategory.add(
                 MarkerOptions()
                     .title(property.property_name)
