@@ -76,6 +76,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     var isClickedBtnLight = false
 
     private var lastTouchedMarker: Marker? = null;
+    private var markerIsClicked: Boolean = false
 
     internal inner class CustomInfoWindowAdapter: GoogleMap.InfoWindowAdapter {
 
@@ -319,20 +320,23 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(INITIALIZE_POSITION, 14.5f))
 
+        readData()
+
         mMap.uiSettings.setMapToolbarEnabled(false)
     }
 
     /* Changes the color of selected marker */
     override fun onMarkerClick(marker: Marker): Boolean {
-        if (lastTouchedMarker == null){
+        if (!markerIsClicked ){
             lastTouchedMarker = marker
+            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.dark_green_pin_40))
+            markerIsClicked = !markerIsClicked
         }
         else{
             lastTouchedMarker?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
             lastTouchedMarker = marker
+            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.dark_green_pin_40))
         }
-
-        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.dark_green_pin_40))
 
         var container_height = 700;
 
@@ -380,6 +384,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         isClickedBtnPaper = false
         isClickedBtnGlass = false
         isClickedBtnClothes = false
+        markerIsClicked = false
     }
 
     //Определённо этот код с кучами строк нужно будет поменять, но пока пусть будет так
@@ -508,7 +513,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     PropertyList.add(Property!!)
                 }
                 for(property in PropertyList){
-                    PropertyFilter(property)
                     mMap.addMarker(MarkerOptions()
                         .title(property.property_name)
                         .snippet(property.property_description +
@@ -517,6 +521,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                                 "\nАдрес: " + property.property_adress)
                         .position(LatLng(property.property_latitude, property.property_longitude))
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
+                    PropertyFilter(property)
                 }
             }
             override fun onCancelled(dataSnapshot: DatabaseError) {

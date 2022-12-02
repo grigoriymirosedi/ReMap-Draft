@@ -13,6 +13,6 @@ class ArticleDetailActivity : AppCompatActivity() {
         getSupportActionBar()?.hide();
         setContentView(R.layout.activity_article_detail)
 
-        val descripton = intent.getStringExtra("NAME")
+        val descripton = intent.getStringExtra("ARTICLE")
     }
 }

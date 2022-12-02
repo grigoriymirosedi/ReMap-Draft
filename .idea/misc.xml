@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/activity_article_detail.xml" value="0.35885416666666664" />
+        <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/activity_eco_markers_details.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/activity_main.xml" value="0.35885416666666664" />
         <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/activity_main2.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/article_item.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/custom_info_window.xml" value="0.3578125" />
+        <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/eco_marker_item.xml" value="0.14" />
         <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/fragment_dashboard.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/fragment_home.xml" value="0.42083333333333334" />
+        <entry key="..\:/Users/Grigoriy/ReMap/app/src/main/res/layout/fragment_notifications.xml" value="0.21041666666666667" />
       </map>
     </option>
   </component>
