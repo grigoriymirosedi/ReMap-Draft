@@ -61,15 +61,15 @@ class NotificationsFragment : Fragment(), RecyclerViewInterface {
         ecoMarkersArrayList = arrayListOf<EcoMarkers>(
             //https://rsbor.ru/where-to-start/kak-razobratsya-v-markirovkax/
             //https://rsbor-msk.ru/markirovka/
-            EcoMarkers(R.drawable.eco_pet, "Пластик с маркировкой 1", "Описание"),
-            EcoMarkers(R.drawable.eco_pehd, "Пластик с маркировкой 2", "Описание"),
-            EcoMarkers(R.drawable.eco_pvc, "Пластик с маркировкой 3", "Описание"),
-            EcoMarkers(R.drawable.eco_peld, "Пластик с маркировкой 4", "Описание"),
-            EcoMarkers(R.drawable.eco_pp, "Пластик с маркировкой 5", "Описание"),
-            EcoMarkers(R.drawable.eco_ps, "Пластик с маркировкой 6", "Описание"),
-            EcoMarkers(R.drawable.eco_other, "Пластик с маркировкой 7", "Описание"),
-            EcoMarkers(R.drawable.eco_alu, "Алюминий", "Описание"),
-            EcoMarkers(R.drawable.eco_fe, "Металл", "Описание"),
+            EcoMarkers(R.drawable.eco_pet, "Пластик с маркировкой 1", "Описание пластика"),
+            EcoMarkers(R.drawable.eco_pehd, "Пластик с маркировкой 2", "Описание пластика"),
+            EcoMarkers(R.drawable.eco_pvc, "Пластик с маркировкой 3", "Описание пластика"),
+            EcoMarkers(R.drawable.eco_peld, "Пластик с маркировкой 4", "Описание пластика"),
+            EcoMarkers(R.drawable.eco_pp, "Пластик с маркировкой 5", "Описание пластика"),
+            EcoMarkers(R.drawable.eco_ps, "Пластик с маркировкой 6", "Описание пластика"),
+            EcoMarkers(R.drawable.eco_other, "Пластик с маркировкой 7", "Описание пластика"),
+            EcoMarkers(R.drawable.eco_alu, "Алюминий", "Описание алюминия"),
+            EcoMarkers(R.drawable.eco_fe, "Металл", "Описание металла"),
         )
     }
 
