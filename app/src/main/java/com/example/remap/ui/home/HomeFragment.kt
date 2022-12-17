@@ -1,22 +1,24 @@
 package com.example.remap.ui.home
 
 import android.app.backup.RestoreObserver
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.remap.databinding.FragmentHomeBinding
 import android.util.Log
-import android.widget.Button
-import android.widget.HorizontalScrollView
-import android.widget.ListView
-import android.widget.ScrollView
+import android.view.ContextMenu
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.marginBottom
 import androidx.navigation.fragment.findNavController
 import com.example.remap.R
@@ -36,8 +38,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-    private lateinit var mMap: GoogleMap
+
+class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowLongClickListener {
+    var mMap: GoogleMap? = null
 
     var INITIALIZE_POSITION = LatLng(47.23,39.72)
     //Ссылка на нашу базу данных: https://console.firebase.google.com/project/remap-1faaf/database/remap-1faaf-default-rtdb/data
@@ -45,6 +48,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     var firebaseDatabase = FirebaseDatabase.getInstance().getReference("Properties")
     var PropertyList = arrayListOf<Properties>()
 
+    //ArrayList`ы для фильтрации
     var EcomobCategory = arrayListOf<MarkerOptions>()
     var PlasticCategory = arrayListOf<MarkerOptions>()
     var BatteriesCategory = arrayListOf<MarkerOptions>()
@@ -130,6 +134,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
+
         var mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 
         //Initializing map...
@@ -143,9 +149,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     isClickedBtnEcomob = !isClickedBtnEcomob
                     ResetFilterButtons()
                     filterBtnEcomob.background.setTint(ContextCompat.getColor(requireContext(), R.color.light_ecomob_green))
-                    mMap.clear()
+                    mMap?.clear()
                     for (Ecomob in EcomobCategory)
-                        mMap.addMarker(Ecomob)
+                        mMap?.addMarker(Ecomob)
                 }
                 else{
                     isClickedBtnEcomob = !isClickedBtnEcomob
@@ -163,9 +169,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     isClickedBtnPlastic = !isClickedBtnPlastic
                     ResetFilterButtons()
                     filterBtnPlastic.background.setTint(ContextCompat.getColor(requireContext(), R.color.light_blue))
-                    mMap.clear()
+                    mMap?.clear()
                     for (Plastic in PlasticCategory)
-                        mMap.addMarker(Plastic)
+                        mMap?.addMarker(Plastic)
                 }
                 else{
                     isClickedBtnPlastic = !isClickedBtnPlastic
@@ -183,9 +189,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     isClickedBtnPlastic = !isClickedBtnPlastic
                     ResetFilterButtons()
                     filterBtnClothes.background.setTint(ContextCompat.getColor(requireContext(), R.color.clothes_color))
-                    mMap.clear()
+                    mMap?.clear()
                     for (Clothes in ClothesCategory)
-                        mMap.addMarker(Clothes)
+                        mMap?.addMarker(Clothes)
                 }
                 else{
                     isClickedBtnPlastic = !isClickedBtnPlastic
@@ -203,9 +209,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     isClickedBtnBatteries = !isClickedBtnBatteries
                     ResetFilterButtons()
                     filterBtnBatteries.background.setTint(ContextCompat.getColor(requireContext(), R.color.batteries_color))
-                    mMap.clear()
+                    mMap?.clear()
                     for (Batteries in BatteriesCategory)
-                        mMap.addMarker(Batteries)
+                        mMap?.addMarker(Batteries)
                 }
                 else{
                     isClickedBtnBatteries = !isClickedBtnBatteries
@@ -223,9 +229,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     isClickedBtnGlass = !isClickedBtnGlass
                     ResetFilterButtons()
                     filterBtnGlass.background.setTint(ContextCompat.getColor(requireContext(), R.color.glass_color))
-                    mMap.clear()
+                    mMap?.clear()
                     for (Glass in GlassCategory)
-                        mMap.addMarker(Glass)
+                        mMap?.addMarker(Glass)
                 }
                 else{
                     isClickedBtnGlass = !isClickedBtnGlass
@@ -243,9 +249,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     isClickedBtnPaper = !isClickedBtnPaper
                     ResetFilterButtons()
                     filterBtnPaper.background.setTint(ContextCompat.getColor(requireContext(), R.color.paper_color))
-                    mMap.clear()
+                    mMap?.clear()
                     for (Paper in PaperCategory)
-                        mMap.addMarker(Paper)
+                        mMap?.addMarker(Paper)
                 }
                 else{
                     isClickedBtnPaper = !isClickedBtnPaper
@@ -263,9 +269,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     isClickedBtnMetal = !isClickedBtnMetal
                     ResetFilterButtons()
                     filterBtnMetal.background.setTint(ContextCompat.getColor(requireContext(), R.color.dark_grey))
-                    mMap.clear()
+                    mMap?.clear()
                     for (Metal in MetalCategory)
-                        mMap.addMarker(Metal)
+                        mMap?.addMarker(Metal)
                 }
                 else{
                     isClickedBtnMetal = !isClickedBtnMetal
@@ -283,9 +289,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     isClickedBtnLight = !isClickedBtnLight
                     ResetFilterButtons()
                     filterBtnLight.background.setTint(ContextCompat.getColor(requireContext(), R.color.light_yellow))
-                    mMap.clear()
+                    mMap?.clear()
                     for (Light in LampsCategory)
-                        mMap.addMarker(Light)
+                        mMap?.addMarker(Light)
                 }
                 else{
                     isClickedBtnLight = !isClickedBtnLight
@@ -315,14 +321,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        mMap.setInfoWindowAdapter(CustomInfoWindowAdapter())
-        mMap.setOnMarkerClickListener(this)
+        mMap?.setInfoWindowAdapter(CustomInfoWindowAdapter())
+        mMap?.setOnMarkerClickListener(this)
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(INITIALIZE_POSITION, 14.5f))
+        mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(INITIALIZE_POSITION, 14.5f))
 
         readData()
 
-        mMap.uiSettings.setMapToolbarEnabled(false)
+        mMap?.uiSettings?.setMapToolbarEnabled(false)
+        mMap?.uiSettings?.setMapToolbarEnabled(false)
+        mMap?.setOnInfoWindowLongClickListener(this)
     }
 
     /* Changes the color of selected marker */
@@ -340,16 +348,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         var container_height = 700;
 
-        var projection = mMap.getProjection();
+        var projection = mMap?.getProjection();
 
-        var markerScreenPosition = projection.toScreenLocation(marker.getPosition());
-        var pointHalfScreenAbove = Point(markerScreenPosition.x,(markerScreenPosition.y - (container_height / 2)).toInt());
+        var markerScreenPosition = projection?.toScreenLocation(marker.getPosition());
+        var pointHalfScreenAbove = Point(markerScreenPosition!!.x,(markerScreenPosition!!.y - (container_height / 2)).toInt());
 
-        var aboveMarkerLatLng = projection.fromScreenLocation(pointHalfScreenAbove);
+        var aboveMarkerLatLng = projection?.fromScreenLocation(pointHalfScreenAbove);
 
         marker.showInfoWindow();
-        var center = CameraUpdateFactory.newLatLng(aboveMarkerLatLng);
-        mMap.moveCamera(center);
+        var center = CameraUpdateFactory.newLatLng(aboveMarkerLatLng!!);
+        mMap?.moveCamera(center);
 
         return true
     }
@@ -513,7 +521,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     PropertyList.add(Property!!)
                 }
                 for(property in PropertyList){
-                    mMap.addMarker(MarkerOptions()
+                    mMap?.addMarker(MarkerOptions()
                         .title(property.property_name)
                         .snippet(property.property_description +
                                 "\n\nГрафик работы: " + property.property_office_hours +
@@ -529,7 +537,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         })
     }
 
-
-
+    override fun onInfoWindowLongClick(marker: Marker) {
+        var clipboard = ContextCompat.getSystemService(requireContext(), ClipboardManager::class.java) as ClipboardManager
+        var clipIndex = marker.snippet?.indexOf("Адрес:")
+        var clipText = marker.snippet?.substring(clipIndex!! + 7)
+        var clip = ClipData.newPlainText("label", clipText)
+        clipboard.setPrimaryClip(clip)
+        Toast.makeText(requireContext(), "Адрес скопирован.", Toast.LENGTH_LONG).show()
+    }
 }
 
