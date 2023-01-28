@@ -6,22 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.remap.*
+import com.example.remap.R
 import com.example.remap.databinding.FragmentNotificationsBinding
 import com.example.remap.models.EcoMarkers
+import com.google.firebase.database.*
 
 class NotificationsFragment : Fragment(), RecyclerViewInterface {
 
     private var _binding: FragmentNotificationsBinding? = null
 
+    var mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("EcoMarkersDetails")
+
     private lateinit var adapter: EcoMarkersAdapter
     private lateinit var ecoRecyclerView: RecyclerView
-    private lateinit var ecoMarkersArrayList: ArrayList<EcoMarkers>
+    var ecoMarkersArrayList: ArrayList<EcoMarkers> = arrayListOf<EcoMarkers>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -43,13 +48,13 @@ class NotificationsFragment : Fragment(), RecyclerViewInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        InitializeMarkers()
+
+        readEcoMarkersData()
+
         val layoutManager = LinearLayoutManager(context)
         ecoRecyclerView = view.findViewById(R.id.ecoMarkersRV)
         ecoRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         ecoRecyclerView.setHasFixedSize(true)
-        adapter = EcoMarkersAdapter(ecoMarkersArrayList, this)
-        ecoRecyclerView.adapter = adapter
     }
 
     override fun onDestroyView() {
@@ -57,7 +62,27 @@ class NotificationsFragment : Fragment(), RecyclerViewInterface {
         _binding = null
     }
 
+    fun readEcoMarkersData() {
+        mDatabaseRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot){
+                ecoMarkersArrayList.clear()
+                for (ds in dataSnapshot.children){
+                    var ecoMarkers = ds.getValue(EcoMarkers::class.java)
+                    ecoMarkersArrayList.add(ecoMarkers!!)
+                }
+                adapter = EcoMarkersAdapter(ecoMarkersArrayList, this@NotificationsFragment)
+                ecoRecyclerView.adapter = adapter
+            }
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+                Toast.makeText(requireContext(), dataSnapshot.toString(), Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    //Перенести содержимое отсюда в Firebase, первые две иконки уже там
+    //не забыть что-нибудь сделать с ecoExamples в Firebase
     fun InitializeMarkers(){
+        /*
         ecoMarkersArrayList = arrayListOf<EcoMarkers>(
             //https://rsbor.ru/where-to-start/kak-razobratsya-v-markirovkax/
             //https://rsbor-msk.ru/markirovka/
@@ -145,7 +170,7 @@ class NotificationsFragment : Fragment(), RecyclerViewInterface {
                 "Пластик типа 7 на переработку не принимают!"),
             /*EcoMarkers(R.drawable.eco_alu, "Алюминий", "Описание"),
             EcoMarkers(R.drawable.eco_fe, "Металл", "Описание"),*/
-        )
+        )*/
     }
 
     override fun onItemClick(position: Int) {

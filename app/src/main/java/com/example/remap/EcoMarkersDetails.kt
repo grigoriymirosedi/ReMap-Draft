@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.remap.models.EcoMarkers
+import com.squareup.picasso.Picasso
 import org.w3c.dom.Text
 
 class EcoMarkersDetails : AppCompatActivity() {
@@ -26,19 +27,20 @@ class EcoMarkersDetails : AppCompatActivity() {
         val description = intent.getParcelableExtra<EcoMarkers>("MARKER")
 
         ecoMarkerImage = findViewById(R.id.ecoMarkerImage)
-        ecoMarkerImage.setImageResource(description!!.contentImage)
+        //ecoMarkerImage.setImageResource(description!!.imageContentURL)
+        Picasso.get().load(description!!.imageContentURL).into(ecoMarkerImage)
 
         ecoMarkerTitle = findViewById(R.id.ecoMarkerTitle)
-        ecoMarkerTitle.text = description.title
+        ecoMarkerTitle.text = description.ecoTitle
 
         ecoMarkerExamplesTitle = findViewById(R.id.ecoMarkerExampleTitle)
-        ecoMarkerExamplesTitle.text = description.examplesTitle
+        ecoMarkerExamplesTitle.text = description.ecoExamplesTitle
 
         ecoMarkerExamples = findViewById(R.id.ecoMarkerExamples)
-        ecoMarkerExamples.text = description.examples
+        ecoMarkerExamples.text = description.ecoExamples
 
         ecoMarkerDescription = findViewById(R.id.ecoMarkerDescription)
-        ecoMarkerDescription.text = description.description
+        ecoMarkerDescription.text = description.ecoDescription
 
     }
 }

@@ -3,10 +3,20 @@ package com.example.remap.models
 import android.os.Parcel
 import android.os.Parcelable
 
-data class EcoMarkers(var imageResource: Int, var contentImage: Int, var title: String, var examplesTitle: String, var examples: String, var description: String): Parcelable {
+data class EcoMarkers(var imageIconURL: String, var imageContentURL: String, var ecoTitle: String, var ecoExamplesTitle: String, var ecoExamples: String, var ecoDescription: String): Parcelable {
+
+    constructor():this(
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    )
+
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readInt(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -15,12 +25,12 @@ data class EcoMarkers(var imageResource: Int, var contentImage: Int, var title: 
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(imageResource)
-        parcel.writeInt(contentImage)
-        parcel.writeString(title)
-        parcel.writeString(examplesTitle)
-        parcel.writeString(examples)
-        parcel.writeString(description)
+        parcel.writeString(imageIconURL)
+        parcel.writeString(imageContentURL)
+        parcel.writeString(ecoTitle)
+        parcel.writeString(ecoExamplesTitle)
+        parcel.writeString(ecoExamples)
+        parcel.writeString(ecoDescription)
     }
 
     override fun describeContents(): Int {
