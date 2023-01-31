@@ -101,16 +101,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         private fun render(marker: Marker, view: View){
             var title = marker.title
             var tvTitle = view.findViewById<TextView>(R.id.titleText)
-            var routeButton = view.findViewById<Button>(R.id.routeButton)
-            var adressCopyBtn = view.findViewById<ImageButton>(R.id.adressCopyButton)
-
-            routeButton.setOnClickListener {
-                Toast.makeText(requireContext(), "В разработке...", Toast.LENGTH_SHORT).show()
-            }
-
-            adressCopyBtn.setOnClickListener {
-                Toast.makeText(requireContext(), "В разработке...", Toast.LENGTH_SHORT).show()
-            }
 
             if (!title.equals("")){
                 tvTitle?.setText(title)
