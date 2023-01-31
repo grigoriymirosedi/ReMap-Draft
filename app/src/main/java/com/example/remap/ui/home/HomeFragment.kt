@@ -39,7 +39,7 @@ import com.google.firebase.database.ValueEventListener
 
 
 
-class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowLongClickListener {
+class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowLongClickListener, GoogleMap.OnInfoWindowClickListener {
     var mMap: GoogleMap? = null
 
     var INITIALIZE_POSITION = LatLng(47.23,39.72)
@@ -101,6 +101,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         private fun render(marker: Marker, view: View){
             var title = marker.title
             var tvTitle = view.findViewById<TextView>(R.id.titleText)
+            var routeButton = view.findViewById<Button>(R.id.routeButton)
+            var adressCopyBtn = view.findViewById<ImageButton>(R.id.adressCopyButton)
+
+            routeButton.setOnClickListener {
+                Toast.makeText(requireContext(), "В разработке...", Toast.LENGTH_SHORT).show()
+            }
+
+            adressCopyBtn.setOnClickListener {
+                Toast.makeText(requireContext(), "В разработке...", Toast.LENGTH_SHORT).show()
+            }
 
             if (!title.equals("")){
                 tvTitle?.setText(title)
@@ -133,8 +143,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
 
         var mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 
@@ -306,6 +314,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         return root
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
@@ -330,6 +340,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         mMap?.uiSettings?.setMapToolbarEnabled(false)
         mMap?.uiSettings?.setMapToolbarEnabled(false)
+        mMap?.setOnInfoWindowClickListener(this)
         mMap?.setOnInfoWindowLongClickListener(this)
     }
 
@@ -382,6 +393,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         metal_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
         paper_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
     }
+
 
     fun ResetAllFilterFlags(){
         isClickedBtnPlastic = false
@@ -512,6 +524,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     }
 
+
+    //Считывает данные с Firebase
     fun readData(){
         firebaseDatabase.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot){
@@ -537,13 +551,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         })
     }
 
-    override fun onInfoWindowLongClick(marker: Marker) {
+    //Копирует адресс при нажатии на InfoWindow
+    override fun onInfoWindowClick(marker: Marker) {
         var clipboard = ContextCompat.getSystemService(requireContext(), ClipboardManager::class.java) as ClipboardManager
         var clipIndex = marker.snippet?.indexOf("Адрес:")
         var clipText = marker.snippet?.substring(clipIndex!! + 7)
         var clip = ClipData.newPlainText("label", clipText)
         clipboard.setPrimaryClip(clip)
-        Toast.makeText(requireContext(), "Адрес скопирован.", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), "Адрес скопирован", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onInfoWindowLongClick(marker: Marker) {
+        Toast.makeText(requireContext(), "Прокладывание маршрута в разработке", Toast.LENGTH_SHORT).show()
     }
 }
 
