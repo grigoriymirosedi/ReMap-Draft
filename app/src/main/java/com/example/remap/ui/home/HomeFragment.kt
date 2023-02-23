@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
+import android.content.res.Configuration
 import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,10 +28,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.android.material.shape.MarkerEdgeTreatment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -320,6 +318,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     //Initialize the map
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+
+        if ((context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) ==  Configuration.UI_MODE_NIGHT_YES) {
+            mMap?.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.style_json))
+        }
 
         mMap?.setInfoWindowAdapter(CustomInfoWindowAdapter())
         mMap?.setOnMarkerClickListener(this)
