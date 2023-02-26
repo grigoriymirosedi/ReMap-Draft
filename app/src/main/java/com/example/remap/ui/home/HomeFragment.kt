@@ -376,14 +376,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         metal_filter_button: Button = filterBtnMetal,
         paper_filter_button : Button = filterBtnPaper
     ){
-        ecomob_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        light_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        plastic_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        clothes_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        glass_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        batteries_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        metal_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        paper_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
+        ecomob_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        light_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        plastic_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        clothes_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        glass_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        batteries_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        metal_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        paper_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
     }
 
 

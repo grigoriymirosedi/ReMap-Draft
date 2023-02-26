@@ -79,20 +79,7 @@ class DashboardFragment : Fragment(), RecyclerViewInterface{
         })
     }
 
-    /*
-    fun InitializeData(){
-        articleArrayList = arrayListOf<Article>(
-            //https://www.ingos.ru/company/blog/2020/sorting/#part-1
-            //https://vk.com/wall-188593703_148 "Эко мифы"
-            Article(R.drawable.article_tip_80, "Как подготовить вторсырьё к переработке", "Test description"),
-            Article(R.drawable.article_paper_80, "Переработка бумаги", "Test description"),
-            Article(R.drawable.article_plastic_80, "Переработка пластика", "Test description"),
-            Article(R.drawable.article_metal_80, "Переработка металла", "Test description"),
-            Article(R.drawable.article_glass_80, "Переработка стекла", "Test description"),
-            Article(R.drawable.article_forbidden_80, "Что не принимается на переработку", "Test description"),
-            Article(R.drawable.article_myth_80, "Эко-Мифы", "Test description"),
-        )
-    }*/
+
 
     override fun onItemClick(position: Int) {
         val intent = Intent(requireContext(), ArticleDetails::class.java)

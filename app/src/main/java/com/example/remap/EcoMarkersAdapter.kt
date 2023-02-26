@@ -24,7 +24,7 @@ class EcoMarkersAdapter(private val ecoMarkersList: ArrayList<EcoMarkers>, priva
         val currentItem = ecoMarkersList[position]
         //holder.eco_marker_image.setImageResource(currentItem.imageResource)
 
-        Picasso.get().load(currentItem.imageContentURL).resize(250,0).into(holder.eco_marker_image)
+        Picasso.get().load(currentItem.imageIconURL).resize(250,0).into(holder.eco_marker_image)
 
         holder.itemView.setOnClickListener{
             recycleViewInterface.onItemClick(position)
