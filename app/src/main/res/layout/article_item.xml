@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:backgroundTint="@color/article_item_color"
         app:cardCornerRadius="10dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +32,7 @@
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                tools:src="@drawable/green_bulb60" />
+                tools:src="@drawable/detergent" />
 
             <TextView
                 android:id="@+id/title_text"

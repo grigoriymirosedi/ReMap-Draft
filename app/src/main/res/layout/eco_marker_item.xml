@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:backgroundTint="@color/ecomarkers_item_color"
         app:cardCornerRadius="10dp"
         app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -19,7 +19,7 @@
             android:name=".EcoMarkersDetails"
             android:exported="false" />
         <activity
-            android:name=".ArticleDetailActivity"
+            android:name=".ArticleDetails"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
