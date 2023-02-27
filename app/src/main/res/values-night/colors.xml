@@ -19,13 +19,17 @@
     <color name="default_button_color">#8BC34A</color>
 
     <color name="article_item_color">#408453</color>
+    <color name="article_item_text_color">#BAE2C5</color>
+    <color name="article_details_color">#189E3E</color>
+    <color name="article_details_text_color">#BAE2C5</color>
+
 
     <color name="ecomarkers_item_color">#5FB563</color>
-    <color name="ecomarker_details_color">#189E3E</color>
-
-    <color name="article_details_color">#189E3E</color>
+    <color name="ecomarkers_details_color">#189E3E</color>
+    <color name="ecomarkers_details_text_color">#BAE2C5</color>
 
     <color name="status_bar_color">#105E26</color>
 
     <color name="navigation_color">#023020</color>
+
 </resources>

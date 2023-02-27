@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/article_details_color"
+    android:background="@color/ecomarkers_details_color"
     tools:context=".EcoMarkersDetails">
 
     <ScrollView
@@ -27,6 +27,7 @@
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:text="Пластик с маркировкой 1, он же PET или ПЭТ (полиэтилентерефталат)"
+                android:textColor="@color/ecomarkers_details_text_color"
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
@@ -46,6 +47,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Примеры изделий из ПЭТ:"
+                android:textColor="@color/ecomarkers_details_text_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -57,6 +59,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Примеры упаковок"
+                android:textColor="@color/ecomarkers_details_text_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -69,6 +72,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Описание"
+                android:textColor="@color/ecomarkers_details_text_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
