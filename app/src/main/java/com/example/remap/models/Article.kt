@@ -12,6 +12,7 @@ data class Article(var articleTitle: String,
                    var article_par5: String,
                    var article_par6: String,
                    var article_par7: String,
+                   var article_par8: String,
                    var articleContentImageURL: String): Parcelable
 {
     constructor():this(
@@ -24,9 +25,11 @@ data class Article(var articleTitle: String,
         "",
         "",
         "",
+        "",
         "")
 
     constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
