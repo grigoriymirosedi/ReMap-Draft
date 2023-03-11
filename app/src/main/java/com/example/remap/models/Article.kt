@@ -54,6 +54,7 @@ data class Article(var articleTitle: String,
         parcel.writeString(article_par5)
         parcel.writeString(article_par6)
         parcel.writeString(article_par7)
+        parcel.writeString(article_par8)
         parcel.writeString(articleContentImageURL)
     }
 
