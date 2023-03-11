@@ -33,7 +33,7 @@ import java.util.*
 
 private lateinit var binding: ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -59,13 +59,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     }
 
-    // Заменить
-    override fun onMapReady(p0: GoogleMap) {
-        TODO("Not yet implemented")
+    override fun recreate() {
+        finish()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        startActivity(getIntent())
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
-    // Заменить
-    override fun onMarkerClick(p0: Marker): Boolean {
-        TODO("Not yet implemented")
-    }
-
 }

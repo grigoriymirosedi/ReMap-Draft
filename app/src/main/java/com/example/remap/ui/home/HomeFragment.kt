@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Point
 import android.os.Bundle
@@ -18,6 +19,7 @@ import android.util.Log
 import android.view.ContextMenu
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.marginBottom
@@ -45,6 +47,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     //для того, чтобы получить доступ, отправьте в лс мне свой email и я вам открою доступ, по другому никак :(
     var firebaseDatabase = FirebaseDatabase.getInstance().getReference("Properties")
     var PropertyList = arrayListOf<Properties>()
+
+    //Отвечает за Day/Night Mode
+    private lateinit var DayNightSwitch: Switch
+    private lateinit var DayNightImage: ImageView
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+    var isNightModeOn: Boolean = false
 
     //ArrayList`ы для фильтрации
     var EcomobCategory = arrayListOf<MarkerOptions>()
@@ -137,6 +146,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         //Initializing map...
         mapFragment.getMapAsync(this)
 
+        DayNightSwitch = root.findViewById(R.id.DayNightSwitch)
+        DayNightImage = root.findViewById(R.id.DayNightImage)
+        sharedPreferences = this.activity!!.getSharedPreferences("MODE", Context.MODE_PRIVATE)
+        isNightModeOn = sharedPreferences.getBoolean("night", false)
+
+        initDayNightSwitch()
+
         filterBtnEcomob = root.findViewById(R.id.fBtnEcomob)
         filterBtnEcomob.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -156,6 +172,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 }
             }
         })
+
+        DayNightSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if(isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                DayNightImage.setImageResource(R.drawable.icons8_night_64);
+                editor = sharedPreferences.edit()
+                editor.putBoolean("night", true)
+            } else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                DayNightImage.setImageResource(R.drawable.icons8_sun_64);
+                editor = sharedPreferences.edit()
+                editor.putBoolean("night", false)
+            }
+            editor.apply()
+        }
 
         filterBtnPlastic = root.findViewById(R.id.fBtnPlastic)
         filterBtnPlastic.setOnClickListener(object : View.OnClickListener {
@@ -302,6 +333,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         return root
     }
 
+
+
+    fun initDayNightSwitch() {
+        DayNightSwitch.isChecked = isNightModeOn
+        if(isNightModeOn){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            DayNightImage.setImageResource(R.drawable.icons8_night_64)
+        } else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            DayNightImage.setImageResource(R.drawable.icons8_sun_64)
+        }
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
