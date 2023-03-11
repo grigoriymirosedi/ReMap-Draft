@@ -29,7 +29,7 @@
 
     <color name="infowindow_topbar_color">#86A364</color>
     <color name="infowindow_content_background_color">#E4F4E5</color>
-    <color name="infowindow_text_color">#EBF3EB</color>
+    <color name="infowindow_text_color">#86A364</color>
 
     <color name="default_button_color">#FFFFFF</color>
 
