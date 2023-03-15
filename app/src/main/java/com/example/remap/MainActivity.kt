@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setTheme(R.style.Theme_ReMap)
         com.example.remap.binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(com.example.remap.binding.root)
 
