@@ -33,6 +33,7 @@
 
     <color name="default_button_color">#FFFFFF</color>
 
+    <color name="splash_screen_color">#105E26</color>
 
     <color name="status_bar_color">#47AA4E</color>
 
