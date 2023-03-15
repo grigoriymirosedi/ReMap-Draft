@@ -35,6 +35,7 @@
     <color name="status_bar_color">#105E26</color>
 
     <color name="splash_screen_color">#105E26</color>
+    <color name="splash_screen_status_bar_color">#105E26</color>
 
     <color name="navigation_color">#023020</color>
 
