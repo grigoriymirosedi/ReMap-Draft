@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_ecomob_24"
+                android:drawableLeft="@drawable/filter_ecomob_vector_24"
                 android:text="@string/ecomob"
                 android:textColor="@color/black"
                 app:backgroundTint="@color/default_button_color" />
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_plastic_24"
+                android:drawableLeft="@drawable/filter_plastic_vector24"
                 android:text="@string/plastic"
                 android:textColor="@color/black"
                 app:backgroundTint="@color/default_button_color" />
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_batteries_24"
+                android:drawableLeft="@drawable/filter_battery_vector24"
                 android:text="@string/batteries"
                 android:textColor="@color/black"
                 app:backgroundTint="@color/default_button_color" />
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_clothes_24"
+                android:drawableLeft="@drawable/filter_clothes_vector24"
                 android:text="@string/clothes"
                 android:textColor="@color/black"
                 app:backgroundTint="@color/default_button_color" />
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_glass_24"
+                android:drawableLeft="@drawable/filter_glass_vector24"
                 android:text="@string/glass"
                 android:textColor="@color/black"
                 app:backgroundTint="@color/default_button_color" />
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_light_24"
+                android:drawableLeft="@drawable/filter_lamps_vector_24"
                 android:text="@string/light"
                 android:textColor="@color/black"
                 app:backgroundTint="@color/default_button_color" />
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_metal_24"
+                android:drawableLeft="@drawable/filter_metal_vector24"
                 android:text="@string/metal"
                 android:textColor="@color/black"
                 app:backgroundTint="@color/default_button_color" />
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_paper_24"
+                android:drawableLeft="@drawable/filter_paper_vector24"
                 android:text="@string/paper"
                 android:textColor="@color/black"
                 app:backgroundTint="@color/default_button_color" />
