@@ -23,6 +23,8 @@
     <color name="article_details_color">#F0FDE2</color>
     <color name="article_details_text_color">#73796C</color>
 
+    <color name="bottom_sheet_color">#F0FDE2</color>
+
     <color name="ecomarkers_item_color">#FFFFFF</color>
     <color name="ecomarkers_details_color">#F0FDE2</color>
     <color name="ecomarkers_details_text_color">#73796C</color>
@@ -33,8 +35,8 @@
 
     <color name="default_button_color">#FFFFFF</color>
 
-    <color name="splash_screen_color">#105E26</color>
-    <color name="splash_screen_status_bar_color">#105E26</color>
+    <color name="splash_screen_color">#005d1c</color>
+    <color name="splash_screen_status_bar_color">#005d1c</color>
 
     <color name="status_bar_color">#47AA4E</color>
 

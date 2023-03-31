@@ -16,10 +16,19 @@
         <!-- Customize your theme here. -->
         <!-- Swtich "on" color -->
         <item name="colorAccent">#198C3A</item>
+        <item name="bottomSheetDialogTheme">@style/MapInfoBottomSheetDialog</item>
     </style>
 
     <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.DayNight">
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/splash_screen_status_bar_color</item>
+    </style>
+
+    <style name="MapInfoBottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/RemapModelStyle</item>
+    </style>
+
+    <style name="RemapModelStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_shape</item>
     </style>
 </resources>

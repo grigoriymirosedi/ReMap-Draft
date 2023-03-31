@@ -1,11 +1,8 @@
 package com.example.remap.ui.home
 
 import android.app.backup.RestoreObserver
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
+import android.content.*
 import android.content.Context.CLIPBOARD_SERVICE
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Point
 import android.os.Bundle
@@ -31,6 +28,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.shape.MarkerEdgeTreatment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -39,7 +39,7 @@ import com.google.firebase.database.ValueEventListener
 
 
 
-class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowLongClickListener, GoogleMap.OnInfoWindowClickListener {
+class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     var mMap: GoogleMap? = null
 
     var INITIALIZE_POSITION = LatLng(47.23,39.72)
@@ -47,6 +47,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     //для того, чтобы получить доступ, отправьте в лс мне свой email и я вам открою доступ, по другому никак :(
     var firebaseDatabase = FirebaseDatabase.getInstance().getReference("Properties")
     var PropertyList = arrayListOf<Properties>()
+
+    //Поля внутри BottomSheetDialogue
+    private lateinit var bottomSheetView: View
+    private lateinit var bottomSheetName: TextView
+    private lateinit var bottomSheetDescription: TextView
+
 
     //Отвечает за Day/Night Mode
     private lateinit var DayNightSwitch: Switch
@@ -141,10 +147,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
         var mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 
         //Initializing map...
         mapFragment.getMapAsync(this)
+
+
 
         DayNightSwitch = root.findViewById(R.id.DayNightSwitch)
         DayNightImage = root.findViewById(R.id.DayNightImage)
@@ -375,12 +384,22 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         mMap?.uiSettings?.setMapToolbarEnabled(false)
         mMap?.uiSettings?.setMapToolbarEnabled(false)
-        mMap?.setOnInfoWindowClickListener(this)
-        mMap?.setOnInfoWindowLongClickListener(this)
     }
 
     /* Changes the color of selected marker */
     override fun onMarkerClick(marker: Marker): Boolean {
+        val dialog = BottomSheetDialog(requireContext())
+        bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet, null)
+        bottomSheetName = bottomSheetView.findViewById(R.id.bottomSheetName)
+        bottomSheetDescription = bottomSheetView.findViewById(R.id.bottomSheetDescription)
+        dialog.setContentView(bottomSheetView)
+        dialog.behavior.peekHeight = 400
+        dialog.behavior.isFitToContents = true
+        bottomSheetName.text = marker.title
+        bottomSheetDescription.text = marker.snippet
+        dialog.behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        dialog.show()
+        //dialog = BottomSheetDialog(requireContext(), )
         if (!markerIsClicked ){
             lastTouchedMarker = marker
             marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.dark_green_pin_40))
@@ -586,18 +605,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         })
     }
 
-    //Копирует адресс при нажатии на InfoWindow
-    override fun onInfoWindowClick(marker: Marker) {
-        var clipboard = ContextCompat.getSystemService(requireContext(), ClipboardManager::class.java) as ClipboardManager
-        var clipIndex = marker.snippet?.indexOf("Адрес:")
-        var clipText = marker.snippet?.substring(clipIndex!! + 7)
-        var clip = ClipData.newPlainText("label", clipText)
-        clipboard.setPrimaryClip(clip)
-        Toast.makeText(requireContext(), "Адрес скопирован", Toast.LENGTH_SHORT).show()
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
     }
 
-    override fun onInfoWindowLongClick(marker: Marker) {
-        Toast.makeText(requireContext(), "Прокладывание маршрута в разработке", Toast.LENGTH_SHORT).show()
-    }
 }
 
