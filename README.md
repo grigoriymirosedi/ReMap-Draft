@@ -5,3 +5,15 @@
 Мы хотим создать мобильное приложение на Android, которое поможет пользователю правильно и легко прийти к раздельному сбору отходов. Простые инструкции подскажут, что делать с мусором и как правильно подготовить его к переработке.
 
 Минимально поддержимая версия Android для работы с приложением: Android 7.1+
+
+<img src=https://user-images.githubusercontent.com/92877083/229247257-367ab5bb-629a-4706-984f-cf03bf894128.png width="50%" height="50%">
+
+<img src=https://user-images.githubusercontent.com/92877083/229247288-9e532a91-acc3-4e32-9342-555631ba2505.png width="50%" height="50%">
+
+<img src=https://user-images.githubusercontent.com/92877083/229247379-13008098-98f0-47cb-8c3f-298006387f75.png width="50%" height="50%">
+
+<img src=https://user-images.githubusercontent.com/92877083/229247345-2e058496-dfb2-4422-8dbc-7f40aa625603.png width="50%" height="50%">
+
+<img src=https://user-images.githubusercontent.com/92877083/229247472-d089c59f-4f72-429b-9984-8ddd51b8fa06.png width="50%" height="50%">
+
+<img src=https://user-images.githubusercontent.com/92877083/229247544-6dbfb246-384d-4878-a356-f11be6bd107c.png width="50%" height="50%">
