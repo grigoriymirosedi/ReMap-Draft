@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.remap">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,7 +19,7 @@
             android:name=".EcoMarkersDetails"
             android:exported="false" />
         <activity
-            android:name=".ArticleDetailActivity"
+            android:name=".ArticleDetails"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -26,11 +28,12 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDJDBpploF-qlrgbs9QlZS5umFGFYqDhjg" />
+            android:value="${MAP_API_KEY}" />
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:theme="@style/Theme.SplashScreen"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"

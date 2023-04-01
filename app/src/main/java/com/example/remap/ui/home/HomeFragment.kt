@@ -1,22 +1,24 @@
 package com.example.remap.ui.home
 
 import android.app.backup.RestoreObserver
+import android.content.*
+import android.content.Context.CLIPBOARD_SERVICE
+import android.content.res.Configuration
 import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.remap.databinding.FragmentHomeBinding
 import android.util.Log
-import android.widget.Button
-import android.widget.HorizontalScrollView
-import android.widget.ListView
-import android.widget.ScrollView
+import android.view.ContextMenu
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.marginBottom
 import androidx.navigation.fragment.findNavController
 import com.example.remap.R
@@ -25,10 +27,10 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.shape.MarkerEdgeTreatment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,7 +38,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+
+class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     var mMap: GoogleMap? = null
 
     var INITIALIZE_POSITION = LatLng(47.23,39.72)
@@ -45,6 +48,20 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     var firebaseDatabase = FirebaseDatabase.getInstance().getReference("Properties")
     var PropertyList = arrayListOf<Properties>()
 
+    //Поля внутри BottomSheetDialogue
+    private lateinit var bottomSheetView: View
+    private lateinit var bottomSheetName: TextView
+    private lateinit var bottomSheetDescription: TextView
+
+
+    //Отвечает за Day/Night Mode
+    private lateinit var DayNightSwitch: Switch
+    private lateinit var DayNightImage: ImageView
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+    var isNightModeOn: Boolean = false
+
+    //ArrayList`ы для фильтрации
     var EcomobCategory = arrayListOf<MarkerOptions>()
     var PlasticCategory = arrayListOf<MarkerOptions>()
     var BatteriesCategory = arrayListOf<MarkerOptions>()
@@ -130,10 +147,20 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
         var mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 
         //Initializing map...
         mapFragment.getMapAsync(this)
+
+
+
+        DayNightSwitch = root.findViewById(R.id.DayNightSwitch)
+        DayNightImage = root.findViewById(R.id.DayNightImage)
+        sharedPreferences = this.activity!!.getSharedPreferences("MODE", Context.MODE_PRIVATE)
+        isNightModeOn = sharedPreferences.getBoolean("night", false)
+
+        initDayNightSwitch()
 
         filterBtnEcomob = root.findViewById(R.id.fBtnEcomob)
         filterBtnEcomob.setOnClickListener(object : View.OnClickListener {
@@ -154,6 +181,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 }
             }
         })
+
+        DayNightSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if(isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                DayNightImage.setImageResource(R.drawable.icons8_night_64);
+                editor = sharedPreferences.edit()
+                editor.putBoolean("night", true)
+            } else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                DayNightImage.setImageResource(R.drawable.icons8_sun_64);
+                editor = sharedPreferences.edit()
+                editor.putBoolean("night", false)
+            }
+            editor.apply()
+        }
 
         filterBtnPlastic = root.findViewById(R.id.fBtnPlastic)
         filterBtnPlastic.setOnClickListener(object : View.OnClickListener {
@@ -300,6 +342,20 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         return root
     }
 
+
+
+    fun initDayNightSwitch() {
+        DayNightSwitch.isChecked = isNightModeOn
+        if(isNightModeOn){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            DayNightImage.setImageResource(R.drawable.icons8_night_64)
+        } else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            DayNightImage.setImageResource(R.drawable.icons8_sun_64)
+        }
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
 
@@ -315,6 +371,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        if ((context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) ==  Configuration.UI_MODE_NIGHT_YES) {
+            mMap?.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.style_json))
+        }
+
         mMap?.setInfoWindowAdapter(CustomInfoWindowAdapter())
         mMap?.setOnMarkerClickListener(this)
 
@@ -323,10 +383,23 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         readData()
 
         mMap?.uiSettings?.setMapToolbarEnabled(false)
+        mMap?.uiSettings?.setMapToolbarEnabled(false)
     }
 
     /* Changes the color of selected marker */
     override fun onMarkerClick(marker: Marker): Boolean {
+        val dialog = BottomSheetDialog(requireContext())
+        bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet, null)
+        bottomSheetName = bottomSheetView.findViewById(R.id.bottomSheetName)
+        bottomSheetDescription = bottomSheetView.findViewById(R.id.bottomSheetDescription)
+        dialog.setContentView(bottomSheetView)
+        dialog.behavior.peekHeight = 400
+        dialog.behavior.isFitToContents = true
+        bottomSheetName.text = marker.title
+        bottomSheetDescription.text = marker.snippet
+        dialog.behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        dialog.show()
+        //dialog = BottomSheetDialog(requireContext(), )
         if (!markerIsClicked ){
             lastTouchedMarker = marker
             marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.dark_green_pin_40))
@@ -365,15 +438,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         metal_filter_button: Button = filterBtnMetal,
         paper_filter_button : Button = filterBtnPaper
     ){
-        ecomob_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        light_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        plastic_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        clothes_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        glass_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        batteries_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        metal_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
-        paper_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.white))
+        ecomob_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        light_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        plastic_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        clothes_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        glass_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        batteries_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        metal_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
+        paper_filter_button.background.setTint(ContextCompat.getColor(requireContext(), R.color.default_button_color))
     }
+
 
     fun ResetAllFilterFlags(){
         isClickedBtnPlastic = false
@@ -504,6 +578,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     }
 
+
+    //Считывает данные с Firebase
     fun readData(){
         firebaseDatabase.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot){
@@ -529,7 +605,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         })
     }
 
-
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+    }
 
 }
 

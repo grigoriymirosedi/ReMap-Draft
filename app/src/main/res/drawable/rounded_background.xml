@@ -3,6 +3,6 @@
     <corners
         android:radius="10sp"/>
     <solid
-        android:color="#86A364"
+        android:color="@color/infowindow_topbar_color"
         />
 </shape>

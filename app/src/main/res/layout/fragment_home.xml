@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-<!--    <Button-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_width="match_parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        android:background="@color/white"-->
-<!--        />-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
@@ -21,14 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MapsActivity"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-56dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bNV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -55,89 +47,105 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_ecomob_24"
+                android:drawableLeft="@drawable/filter_ecomob_vector_24"
                 android:text="@string/ecomob"
                 android:textColor="@color/black"
-                app:backgroundTint="@color/white" />
+                app:backgroundTint="@color/default_button_color" />
 
             <Button
                 android:id="@+id/fBtnPlastic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:drawableLeft="@drawable/filter_plastic_vector24"
                 android:text="@string/plastic"
                 android:textColor="@color/black"
-                app:backgroundTint = "@color/white"
-                android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_plastic_24"
-                />
+                app:backgroundTint="@color/default_button_color" />
 
             <Button
                 android:id="@+id/fBtnBatteries"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:drawableLeft="@drawable/filter_battery_vector24"
                 android:text="@string/batteries"
                 android:textColor="@color/black"
-                app:backgroundTint = "@color/white"
-                android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_batteries_24"
-                />
+                app:backgroundTint="@color/default_button_color" />
 
             <Button
                 android:id="@+id/fBtnClothes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:drawableLeft="@drawable/filter_clothes_vector24"
                 android:text="@string/clothes"
                 android:textColor="@color/black"
-                app:backgroundTint = "@color/white"
-                android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_clothes_24"
-                />
+                app:backgroundTint="@color/default_button_color" />
+
             <Button
                 android:id="@+id/fBtnGlass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:drawableLeft="@drawable/filter_glass_vector24"
                 android:text="@string/glass"
                 android:textColor="@color/black"
-                app:backgroundTint = "@color/white"
-                android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_glass_24"
-                />
+                app:backgroundTint="@color/default_button_color" />
 
             <Button
                 android:id="@+id/fBtnLight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:drawableLeft="@drawable/filter_lamps_vector_24"
                 android:text="@string/light"
                 android:textColor="@color/black"
-                app:backgroundTint = "@color/white"
-                android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_light_24"
-                />
+                app:backgroundTint="@color/default_button_color" />
+
             <Button
                 android:id="@+id/fBtnMetal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:drawableLeft="@drawable/filter_metal_vector24"
                 android:text="@string/metal"
                 android:textColor="@color/black"
-                app:backgroundTint = "@color/white"
-                android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_metal_24"
-                />
+                app:backgroundTint="@color/default_button_color" />
 
             <Button
                 android:id="@+id/fBtnPaper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:drawableLeft="@drawable/filter_paper_vector24"
                 android:text="@string/paper"
                 android:textColor="@color/black"
-                app:backgroundTint = "@color/white"
-                android:layout_marginEnd="10dp"
-                android:drawableLeft="@drawable/filter_paper_24"
-                />
+                app:backgroundTint="@color/default_button_color" />
 
         </LinearLayout>
 
     </HorizontalScrollView>
+
+    <Switch
+        android:id="@+id/DayNightSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/DayNightImage"
+        app:layout_constraintTop_toTopOf="@+id/map" />
+
+    <ImageView
+        android:id="@+id/DayNightImage"
+        android:layout_width="53dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/icons8_sun_64"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

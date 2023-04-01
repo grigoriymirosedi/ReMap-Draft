@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#8BC34A</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_green">#47AA4E</color>
+    <color name="light_blue">#96D4DC</color>
+    <color name="dark_grey">#BCB6B6</color>
+    <color name="light_yellow">#F8EE95</color>
+    <color name="light_ecomob_green">#C2FF7C</color>
+    <color name="paper_color">#DFC9B7</color>
+    <color name="glass_color">#CDEFEE</color>
+    <color name="clothes_color">#A8B6A8</color>
+    <color name="batteries_color">#BBB6DC</color>
+    <color name="default_button_color">#8BC34A</color>
+
+    <color name="article_item_color">#408453</color>
+    <color name="article_item_text_color">#BAE2C5</color>
+    <color name="article_details_color">#189E3E</color>
+    <color name="article_details_text_color">#BAE2C5</color>
+
+    <color name="bottom_sheet_color">#BAE2C5</color>
+
+    <color name="ecomarkers_item_color">#5FB563</color>
+    <color name="ecomarkers_details_color">#189E3E</color>
+    <color name="ecomarkers_details_text_color">#BAE2C5</color>
+
+    <color name="infowindow_topbar_color">#156B2D</color>
+    <color name="infowindow_content_background_color">#408453</color>
+    <color name="infowindow_text_color">#EBF3EB</color>
+
+    <color name="status_bar_color">#105E26</color>
+
+    <color name="splash_screen_color">#005d1c</color>
+    <color name="splash_screen_status_bar_color">#005d1c</color>
+
+    <color name="navigation_color">#023020</color>
+
+</resources>
