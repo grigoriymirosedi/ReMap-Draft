@@ -410,20 +410,6 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
             lastTouchedMarker = marker
             marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.dark_green_pin_40))
         }
-
-        var container_height = 700;
-
-        var projection = mMap?.getProjection();
-
-        var markerScreenPosition = projection?.toScreenLocation(marker.getPosition());
-        var pointHalfScreenAbove = Point(markerScreenPosition!!.x,(markerScreenPosition!!.y - (container_height / 2)).toInt());
-
-        var aboveMarkerLatLng = projection?.fromScreenLocation(pointHalfScreenAbove);
-
-        marker.showInfoWindow();
-        var center = CameraUpdateFactory.newLatLng(aboveMarkerLatLng!!);
-        mMap?.moveCamera(center);
-
         return true
     }
 
