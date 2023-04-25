@@ -57,6 +57,8 @@ class NotificationsFragment : Fragment(), RecyclerViewInterface {
 
         searchView = view.findViewById(R.id.searchView)
 
+        Log.d("123123", "${ecoMarkersArrayList.size}")
+
         val layoutManager = LinearLayoutManager(context)
         ecoRecyclerView = view.findViewById(R.id.ecoMarkersRV)
         ecoRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)

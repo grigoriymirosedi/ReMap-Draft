@@ -23,8 +23,6 @@ import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.util.Scanner
-import kotlin.math.max
 
 private lateinit var binding: ActivityMainBinding
 
@@ -42,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var ScannerButton: ImageButton
+    //private lateinit var ScannerButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        ScannerButton = findViewById(R.id.scannerButton)
+        /*ScannerButton = findViewById(R.id.scannerButton)
 
         readEcoMarkersData()
 
@@ -77,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             if(cameraIntent.resolveActivity(packageManager) != null) {
                 startActivityForResult(cameraIntent, CAMERA_PERMISSION_CODE)
             }
-        }
+        }*/
 
     }
 
@@ -138,9 +136,15 @@ class MainActivity : AppCompatActivity() {
         var classes = arrayOf<String>("PET1", "HDPE2", "PVC3", "PELD4", "PP5", "PS6", "OTHER7")
         //resultTV.text = "Результат: " + classes[maxPos]
 
-        val intent = Intent(this, EcoMarkersDetails::class.java)
-        intent.putExtra("MARKER", ecoMarkersArrayList[maxPos])
+        val intent = Intent(this, ScannerResult::class.java)
+        intent.putExtra("FirstResult", maxPos)
+        intent.putExtra("SecondResult", predMaxPos)
+        intent.putExtra("ThirdResult", predPredMaxPos)
         startActivity(intent)
+
+        /*val intent = Intent(this, EcoMarkersDetails::class.java)
+        intent.putExtra("MARKER", ecoMarkersArrayList[maxPos])
+        startActivity(intent)*/
 
 
 
@@ -163,7 +167,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == CAMERA_PERMISSION_CODE) {
             if (resultCode == RESULT_OK) {
@@ -179,10 +183,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("123123", "Cancelled")
             }
         }
-        else{
-            Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
-        }
-    }
+    }*/
 
     override fun recreate() {
         finish()
