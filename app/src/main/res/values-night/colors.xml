@@ -35,6 +35,8 @@
 
     <color name="status_bar_color">#105E26</color>
 
+    <color name="scanner_result_item_color">#5FB563</color>
+
     <color name="search_color">#105E26</color>
 
     <color name="splash_screen_color">#005d1c</color>
