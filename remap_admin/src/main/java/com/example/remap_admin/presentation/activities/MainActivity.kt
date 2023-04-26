@@ -1,8 +1,12 @@
-package com.example.remap_admin
+package com.example.remap_admin.presentation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.remap_admin.R
+import com.example.remap_admin.presentation.fragments.ArticleFragment
+import com.example.remap_admin.presentation.fragments.EcoMarkerFragment
+import com.example.remap_admin.presentation.fragments.MapFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportActionBar?.hide()
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
 
@@ -35,6 +41,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCurrentFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_fragment, fragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
     }
 }
