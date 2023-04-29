@@ -9,7 +9,7 @@ import com.google.firebase.database.*
 
 object MapListRepositoryImpl: MapListRepository {
 
-    private val mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("Properties")
+    private val mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("Test")
 
     private val mapListLD = MutableLiveData<List<MapItem>>()
     private val mapList = ArrayList<MapItem>()
@@ -49,6 +49,7 @@ object MapListRepositoryImpl: MapListRepository {
     private fun getData() {
         mDatabaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot){
+                mapList.clear()
                 for (ds in dataSnapshot.children){
                     var mapItem = ds.getValue(MapItem::class.java)
                     mapList.add(mapItem!!)

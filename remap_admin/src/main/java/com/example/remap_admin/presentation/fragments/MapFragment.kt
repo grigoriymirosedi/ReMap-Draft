@@ -2,18 +2,16 @@ package com.example.remap_admin.presentation.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.remap_admin.R
-import com.example.remap_admin.domain.MapItem
-import com.example.remap_admin.presentation.activities.MapItemActivity
+import com.example.remap_admin.presentation.activities.EditMapItemActivity
 import com.example.remap_admin.presentation.adapters.MapItemAdapter
 import com.example.remap_admin.presentation.adapters.RecyclerViewInterface
 
@@ -23,6 +21,7 @@ class MapFragment : Fragment(), RecyclerViewInterface {
     private lateinit var mapListRV: RecyclerView
     private lateinit var mapItemAdapter: MapItemAdapter
     private lateinit var mapFragmentViewModel: MapFragmentViewModel
+    private lateinit var addMapItemBtn: ImageButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +43,8 @@ class MapFragment : Fragment(), RecyclerViewInterface {
             mapItemAdapter.mapList = it
         }
         setUpClickListener()
+        addMapItemBtn.setOnClickListener {
+        }
     }
 
     private fun setUpClickListener() {
@@ -52,7 +53,7 @@ class MapFragment : Fragment(), RecyclerViewInterface {
     }
 
     override fun onItemClick(position: Int) {
-        var editIntent = Intent(requireContext(), MapItemActivity::class.java)
+        var editIntent = Intent(requireContext(), EditMapItemActivity::class.java)
         editIntent.putExtra("Property", mapFragmentViewModel.mapList.value?.get(position))
         startActivity(editIntent)
     }

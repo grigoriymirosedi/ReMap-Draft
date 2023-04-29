@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activities.EditMapItemActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:showDividers="none">
+
+            <TextView
+                android:id="@+id/tv_map_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Название:"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_add_map_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/tv_map_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Описание:"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_add_map_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/tv_map_item_adress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Адрес:"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_add_map_item_adress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/tv_map_item_office_hours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Часы работы:"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_add_map_item_office_hours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/tv_map_item_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Конакты:"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_add_map_item_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/tv_map_item_latitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Широта:"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_add_map_item_latitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/tv_map_item_longitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Долгота:"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_add_map_item_longitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <Switch
+                android:id="@+id/switch_add_map_item_ecomob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Экомобиль"
+                android:textSize="22sp" />
+
+            <Switch
+                android:id="@+id/switch_add_map_item_plastic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Пластик"
+                android:textSize="22sp" />
+
+            <Switch
+                android:id="@+id/switch_add_map_item_glass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Стекло"
+                android:textSize="22sp" />
+
+            <Switch
+                android:id="@+id/switch_add_map_item_paper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Бумага"
+                android:textSize="22sp" />
+
+            <Switch
+                android:id="@+id/switch_add_map_item_batteries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Батарейки"
+                android:textSize="22sp" />
+
+            <Switch
+                android:id="@+id/switch_add_map_item_clothes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Одежда"
+                android:textSize="22sp" />
+
+
+            <Switch
+                android:id="@+id/switch_add_map_item_lamps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Лампочки"
+                android:textSize="22sp" />
+
+            <Switch
+                android:id="@+id/switch_add_map_item_metal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Метал"
+                android:textSize="22sp" />
+
+            <Button
+                android:id="@+id/map_item_add_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Создать"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

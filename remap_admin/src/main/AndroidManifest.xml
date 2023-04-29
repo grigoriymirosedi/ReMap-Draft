@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReMap">
         <activity
-            android:name=".presentation.activities.MapItemActivity"
+            android:name=".presentation.activities.EditMapItemActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
