@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите название точки переработки"
                 android:inputType="textMultiLine"
                 android:minHeight="48dp" />
 
@@ -54,6 +55,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите описание точки переработки"
                 android:inputType="textMultiLine" />
 
             <TextView
@@ -70,9 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите адрес точки переработки"
                 android:inputType="textMultiLine"
-                android:minHeight="48dp"
-                android:text="Name" />
+                android:minHeight="48dp" />
 
             <TextView
                 android:id="@+id/tv_map_item_office_hours"
@@ -88,8 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="Name" />
+                android:hint="Введите график работы точки переработки"
+                android:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/tv_map_item_contacts"
@@ -105,8 +107,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="Name" />
+                android:hint="Введите контакты точки переработки"
+                android:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/tv_map_item_latitude"
@@ -122,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите местоположение точки переработки (широта)"
                 android:inputType="numberDecimal" />
 
             <TextView
@@ -138,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите местоположение точки переработки (долгота)"
                 android:inputType="numberDecimal" />
 
             <Switch

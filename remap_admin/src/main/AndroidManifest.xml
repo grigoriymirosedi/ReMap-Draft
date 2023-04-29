@@ -9,7 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReMap">
         <activity
+            android:name=".presentation.activities.AddMapItemActivity"
+            android:screenOrientation="portrait"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".presentation.activities.EditMapItemActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -17,6 +26,7 @@
         </activity>
         <activity
             android:name=".presentation.activities.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

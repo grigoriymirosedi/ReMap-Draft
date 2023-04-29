@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.remap_admin.R
+import com.example.remap_admin.presentation.activities.AddMapItemActivity
 import com.example.remap_admin.presentation.activities.EditMapItemActivity
 import com.example.remap_admin.presentation.adapters.MapItemAdapter
 import com.example.remap_admin.presentation.adapters.RecyclerViewInterface
@@ -30,6 +31,7 @@ class MapFragment : Fragment(), RecyclerViewInterface {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_map, container, false)
         mapListRV = view.findViewById(R.id.mapRV)
+        addMapItemBtn = view.findViewById(R.id.addMapItemButton)
         mapListRV.layoutManager = LinearLayoutManager(requireContext())
         mapItemAdapter = MapItemAdapter(this@MapFragment)
         mapListRV.adapter = mapItemAdapter
@@ -44,6 +46,8 @@ class MapFragment : Fragment(), RecyclerViewInterface {
         }
         setUpClickListener()
         addMapItemBtn.setOnClickListener {
+            var addIntent = Intent(requireContext(), AddMapItemActivity::class.java)
+            startActivity(addIntent)
         }
     }
 

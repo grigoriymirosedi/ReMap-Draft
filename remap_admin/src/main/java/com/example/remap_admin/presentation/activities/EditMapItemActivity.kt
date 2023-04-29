@@ -2,12 +2,14 @@ package com.example.remap_admin.presentation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import android.widget.Toast
 import com.example.remap_admin.R
 import com.example.remap_admin.domain.MapItem
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -43,6 +45,7 @@ class EditMapItemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_map_item)
+        supportActionBar?.hide()
 
         mapItemMap = HashMap()
         intentData = intent.getParcelableExtra<MapItem>("Property")!!
@@ -52,6 +55,8 @@ class EditMapItemActivity : AppCompatActivity() {
         setMapItemData()
 
         mapItemApplyButton.setOnClickListener {
+            if (!inputValidate())
+                return@setOnClickListener
             mapItemQuery.addListenerForSingleValueEvent(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for(mapItemSnapshot in snapshot.children) {
@@ -67,6 +72,39 @@ class EditMapItemActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun inputValidate(): Boolean {
+        var isValid = true
+        if(TextUtils.isEmpty(etMapItemTitle.text.toString())) {
+            etMapItemTitle.setError("Пустая строка")
+            isValid = false
+        }
+        if(TextUtils.isEmpty(etMapItemDescription.toString())) {
+            etMapItemTitle.setError("Пустая строка")
+            isValid = false
+        }
+        if(TextUtils.isEmpty(etMapItemAdress.toString())) {
+            etMapItemTitle.setError("Пустая строка")
+            isValid = false
+        }
+        if(TextUtils.isEmpty(etMapItemContacts.toString())) {
+            etMapItemTitle.setError("Пустая строка")
+            isValid = false
+        }
+        if(TextUtils.isEmpty(etMapItemLatitude.toString())) {
+            etMapItemTitle.setError("Пустая строка")
+            isValid = false
+        }
+        if(TextUtils.isEmpty(etMapItemLongitude.toString())) {
+            etMapItemTitle.setError("Пустая строка")
+            isValid = false
+        }
+        if(TextUtils.isEmpty(etMapItemOfficeHours.toString())) {
+            etMapItemTitle.setError("Пустая строка")
+            isValid = false
+        }
+        return isValid
     }
 
     private fun applySettings(): MapItem {
