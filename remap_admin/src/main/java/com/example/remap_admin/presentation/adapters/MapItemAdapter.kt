@@ -12,7 +12,7 @@ import org.w3c.dom.Text
 
 class MapItemAdapter(private val recyclerViewInterface: RecyclerViewInterface): RecyclerView.Adapter<MapItemAdapter.MapItemViewHolder>() {
 
-    var mapList = listOf<MapItem>()
+    var mapList = mutableListOf<MapItem>()
         set(value) {
             field = value
             notifyDataSetChanged() //Нужно поменять потом будет
