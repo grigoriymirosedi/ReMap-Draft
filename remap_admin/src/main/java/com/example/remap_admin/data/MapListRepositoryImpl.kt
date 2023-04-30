@@ -15,7 +15,7 @@ object MapListRepositoryImpl: MapListRepository {
     private val mapList = ArrayList<MapItem>()
 
     init {
-        getData()
+        getMapItemData()
     }
 
     override fun addMapItem(mapItem: MapItem) {
@@ -24,7 +24,7 @@ object MapListRepositoryImpl: MapListRepository {
     }
 
     override fun editMapItem(mapItem: MapItem) {
-        val oldElement = getMapItem(mapItem.property_name)
+        val oldElement = getMapItem(mapItem.property_adress)
         mapList.remove(oldElement)
         addMapItem(mapItem)
     }
@@ -34,8 +34,8 @@ object MapListRepositoryImpl: MapListRepository {
         UpdateList()
     }
 
-    override fun getMapItem(mapItemName: String): MapItem {
-        return mapList.find { it.property_name == mapItemName } ?: throw RuntimeException("Element with name $mapItemName not found")
+    override fun getMapItem(mapItemAdress: String): MapItem {
+        return mapList.find { it.property_adress == mapItemAdress } ?: throw RuntimeException("Element with adress $mapItemAdress not found")
     }
 
     override fun getMapList(): LiveData<List<MapItem>> {
@@ -46,7 +46,7 @@ object MapListRepositoryImpl: MapListRepository {
         mapListLD.value = mapList.toList()
     }
 
-    private fun getData() {
+    private fun getMapItemData() {
         mDatabaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot){
                 mapList.clear()

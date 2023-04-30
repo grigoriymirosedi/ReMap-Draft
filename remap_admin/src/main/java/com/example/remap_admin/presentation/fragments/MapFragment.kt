@@ -1,6 +1,5 @@
 package com.example.remap_admin.presentation.fragments
 
-import android.content.ClipData.Item
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -32,7 +31,7 @@ class MapFragment : Fragment(), RecyclerViewInterface {
     private lateinit var mapItemAdapter: MapItemAdapter
     private lateinit var mapFragmentViewModel: MapFragmentViewModel
     private lateinit var addMapItemBtn: ImageButton
-    var database = FirebaseDatabase.getInstance().getReference()
+    private var database = FirebaseDatabase.getInstance().getReference()
 
 
     override fun onCreateView(
@@ -55,7 +54,7 @@ class MapFragment : Fragment(), RecyclerViewInterface {
         mapFragmentViewModel.mapList.observe(viewLifecycleOwner) {
             mapItemAdapter.mapList = it.toMutableList()
         }
-        setUpMapItemClickListener()
+
         setUpAddMapItemClickListener()
 
         val swipeToDeleteCallback = object : SwipeToDeleteCallback() {
@@ -89,11 +88,6 @@ class MapFragment : Fragment(), RecyclerViewInterface {
         addMapItemBtn.setOnClickListener {
             var addIntent = Intent(requireContext(), AddMapItemActivity::class.java)
             startActivity(addIntent)
-        }
-    }
-
-    private fun setUpMapItemClickListener() {
-        mapItemAdapter.onMapItemClickListener = {
         }
     }
 

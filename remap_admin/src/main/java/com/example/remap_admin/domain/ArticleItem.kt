@@ -1,4 +1,4 @@
-package com.example.remap_admin
+package com.example.remap_admin.domain
 
 import android.os.Parcel
 import android.os.Parcelable
