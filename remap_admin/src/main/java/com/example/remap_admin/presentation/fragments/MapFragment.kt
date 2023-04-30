@@ -60,7 +60,7 @@ class MapFragment : Fragment(), RecyclerViewInterface {
         val swipeToDeleteCallback = object : SwipeToDeleteCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                deleteMapItem(position)
+                swipeDeleteMapItem(position)
                 mapItemAdapter.mapList.removeAt(position)
                 mapListRV.adapter?.notifyItemRemoved(position)
             }
@@ -70,7 +70,7 @@ class MapFragment : Fragment(), RecyclerViewInterface {
         itemTouchHelper.attachToRecyclerView(mapListRV)
     }
 
-    private fun deleteMapItem(position: Int) {
+    private fun swipeDeleteMapItem(position: Int) {
         var mapItemDeleteQuery = database.child("Test").orderByChild("property_adress").equalTo(mapItemAdapter.mapList[position].property_adress)
         mapItemDeleteQuery.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

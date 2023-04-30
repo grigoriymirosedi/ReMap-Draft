@@ -32,10 +32,9 @@ class AddMapItemActivity : AppCompatActivity() {
     private lateinit var switchAddMapItemLamps: Switch
     private lateinit var switchAddMapItemMetal: Switch
     private lateinit var mapItemAddButton: Button
-    private lateinit var mapItemMap: HashMap<String, MapItem>
 
     var database = FirebaseDatabase.getInstance().getReference()
-    var addDB= database.child("Test")
+    var addMapItemDB = database.child("Test")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +45,7 @@ class AddMapItemActivity : AppCompatActivity() {
         mapItemAddButton.setOnClickListener {
             if(!inputValidate())
                 return@setOnClickListener
-            addDB.push().setValue(createMapItem())
+            addMapItemDB.push().setValue(createMapItem())
             Toast.makeText(this, "Успешно!", Toast.LENGTH_SHORT).show()
             finish()
         }

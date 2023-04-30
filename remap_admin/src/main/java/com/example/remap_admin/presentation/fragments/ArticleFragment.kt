@@ -9,13 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.remap_admin.R
+import com.example.remap_admin.presentation.SwipeToDeleteCallback
+import com.example.remap_admin.presentation.activities.AddArticleItemActivity
+import com.example.remap_admin.presentation.activities.AddMapItemActivity
 import com.example.remap_admin.presentation.activities.EditArticleItemActivity
 import com.example.remap_admin.presentation.adapters.ArticleItemAdapter
 import com.example.remap_admin.presentation.adapters.RecyclerViewInterface
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class ArticleFragment : Fragment(), RecyclerViewInterface {
@@ -46,12 +53,48 @@ class ArticleFragment : Fragment(), RecyclerViewInterface {
         articleFragmentViewModel.articleList.observe(viewLifecycleOwner) {
             articleItemAdapter.articleList = it.toMutableList()
         }
+
+        setUpAddArticleItemClickListener()
+
+        val swipeToDeleteCallback = object : SwipeToDeleteCallback() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                swipeDeleteArticleItem(position)
+                articleItemAdapter.articleList.removeAt(position)
+                articleListRV.adapter?.notifyItemRemoved(position)
+            }
+
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(articleListRV)
+
+    }
+
+    private fun swipeDeleteArticleItem(position: Int) {
+        var articleItemDeleteQuery = database.child("TestArticle").orderByChild("articleTitle").equalTo(articleItemAdapter.articleList[position].articleTitle)
+        articleItemDeleteQuery.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(articleItemDeleteSnapshot in snapshot.children) {
+                    articleItemDeleteSnapshot.ref.removeValue()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
 
     override fun onItemClick(position: Int) {
         var editIntent = Intent(requireContext(), EditArticleItemActivity::class.java)
         editIntent.putExtra("Article", articleFragmentViewModel.articleList.value?.get(position))
         startActivity(editIntent)
+    }
+
+    private fun setUpAddArticleItemClickListener() {
+        addArticleItemBtn.setOnClickListener {
+            var addIntent = Intent(requireContext(), AddArticleItemActivity::class.java)
+            startActivity(addIntent)
+        }
     }
 
 }

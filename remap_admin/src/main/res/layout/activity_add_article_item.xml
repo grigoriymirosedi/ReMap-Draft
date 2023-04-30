@@ -24,7 +24,7 @@
             android:showDividers="none">
 
             <TextView
-                android:id="@+id/tv_article_item_title"
+                android:id="@+id/tv_add_article_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Заголовок:"
@@ -32,16 +32,17 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_title"
+                android:id="@+id/et_add_article_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите заголовок"
                 android:inputType="textMultiLine"
                 android:minHeight="48dp" />
 
             <TextView
-                android:id="@+id/tv_article_item_par1"
+                android:id="@+id/tv_add_article_item_par1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Параграф 1"
@@ -49,15 +50,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_par1"
+                android:id="@+id/et_add_article_item_par1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите текст"
                 android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/tv_article_item_par2"
+                android:id="@+id/tv_add_article_item_par2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Параграф 2"
@@ -65,17 +67,17 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_par2"
+                android:id="@+id/et_add_article_item_par2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите текст"
                 android:inputType="textMultiLine"
-                android:minHeight="48dp"
-                android:text="Name" />
+                android:minHeight="48dp" />
 
             <TextView
-                android:id="@+id/tv_article_item_par3"
+                android:id="@+id/tv_add_article_item_par3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Параграф 3"
@@ -83,16 +85,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_par3"
+                android:id="@+id/et_add_article_item_par3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="Name" />
+                android:hint="Введите текст"
+                android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/tv_article_item_par4"
+                android:id="@+id/tv_add_article_item_par4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Параграф 4"
@@ -100,16 +102,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_par4"
+                android:id="@+id/et_add_article_item_par4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="Name" />
+                android:hint="Введите текст"
+                android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/tv_article_item_par5"
+                android:id="@+id/tv_add_article_item_par5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Параграф 5"
@@ -117,16 +119,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_par5"
+                android:id="@+id/et_add_article_item_par5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="Name" />
+                android:hint="Введите текст"
+                android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/tv_article_item_par6"
+                android:id="@+id/tv_add_article_item_par6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Параграф 6"
@@ -134,16 +136,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_par6"
+                android:id="@+id/et_add_article_item_par6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:inputType="textMultiLine"
-                android:text="Name" />
+                android:hint="Введите текст"
+                android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/tv_article_item_par7"
+                android:id="@+id/tv_add_article_item_par7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Параграф 7"
@@ -151,15 +153,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_par7"
+                android:id="@+id/et_add_article_item_par7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите текст"
                 android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/tv_article_item_par8"
+                android:id="@+id/tv_add_article_item_par8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Параграф 8"
@@ -167,15 +170,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_item_par8"
+                android:id="@+id/et_add_article_item_par8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Введите текст"
                 android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/tv_article_icon_image"
+                android:id="@+id/tv_add_article_icon_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Иконка статьи (заголовок):"
@@ -183,15 +187,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_icon_image"
+                android:id="@+id/et_add_article_icon_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Укажите ссылку на картинку"
                 android:inputType="textMultiLine" />
 
             <TextView
-                android:id="@+id/tv_article_content_image"
+                android:id="@+id/tv_add_article_content_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Иконка статьи (внутри):"
@@ -199,17 +204,18 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/et_article_content_image"
+                android:id="@+id/et_add_article_content_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
+                android:hint="Укажите ссылку на картинку"
                 android:inputType="textMultiLine" />
 
 
 
             <Button
-                android:id="@+id/article_item_apply_button"
+                android:id="@+id/article_item_add_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"

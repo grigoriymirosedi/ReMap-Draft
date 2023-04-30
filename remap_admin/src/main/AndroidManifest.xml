@@ -9,8 +9,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReMap">
         <activity
+            android:name=".presentation.activities.AddArticleItemActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".presentation.activities.EditArticleItemActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
