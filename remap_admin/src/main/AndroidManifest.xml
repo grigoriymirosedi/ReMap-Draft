@@ -9,6 +9,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReMap">
         <activity
+            android:name=".presentation.activities.EditEcoMarkerItemActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".presentation.activities.AddEcoMarkerItemActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".presentation.activities.AddArticleItemActivity"
             android:exported="false"
             android:screenOrientation="portrait">

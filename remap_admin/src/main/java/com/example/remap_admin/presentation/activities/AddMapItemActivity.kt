@@ -33,8 +33,8 @@ class AddMapItemActivity : AppCompatActivity() {
     private lateinit var switchAddMapItemMetal: Switch
     private lateinit var mapItemAddButton: Button
 
-    var database = FirebaseDatabase.getInstance().getReference()
-    var addMapItemDB = database.child("Test")
+    private var database = FirebaseDatabase.getInstance().getReference()
+    private var addMapItemDB = database.child("Test")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

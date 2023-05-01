@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activities.EditMapItemActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:showDividers="none">
+
+            <TextView
+                android:id="@+id/tv_ecomarker_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Заголовок"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_ecomarker_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Введите текст"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/tv_ecomarker_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Описание"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_ecomarker_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Введите текст"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/tv_ecomarker_item_examples_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Заголовок примеров"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_ecomarker_item_examples_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Введите текст"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/tv_ecomarker_item_examples"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Примеры"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_ecomarker_item_examples"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Введите текст"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/tv_ecomarker_item_icon_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Иконка маркировки"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_ecomarker_item_icon_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Введите ссылку на иконку маркировки"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/tv_ecomarker_item_content_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Иконка примера маркировки"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_ecomarker_item_content_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Введите ссылку на иконку примера маркировки"
+                android:inputType="textMultiLine" />
+
+
+            <Button
+                android:id="@+id/ecomarker_item_apply_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Создать"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
