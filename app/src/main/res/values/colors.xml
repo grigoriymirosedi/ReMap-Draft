@@ -40,7 +40,7 @@
 
     <color name="status_bar_color">#47AA4E</color>
     <color name="scanner_result_item_color">#FFFFFF</color>
-    <color name="search_color">#47AA4E</color>
+    <color name="search_color">#FFFFFF</color>
 
     <color name="navigation_color">#FFFFFF</color>
 </resources>
