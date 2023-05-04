@@ -23,196 +23,193 @@
             android:orientation="vertical"
             android:showDividers="none">
 
-            <TextView
-                android:id="@+id/tv_add_article_item_title"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Заголовок:"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:hint="Заголовок"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст">
 
-            <EditText
-                android:id="@+id/et_add_article_item_title"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите заголовок"
-                android:inputType="textMultiLine"
-                android:minHeight="48dp" />
+                android:hint="Параграф 1"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст">
 
-            <TextView
-                android:id="@+id/tv_add_article_item_par1"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_par1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Параграф 1"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:hint="Параграф 2"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст">
 
-            <EditText
-                android:id="@+id/et_add_article_item_par1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите текст"
-                android:inputType="textMultiLine" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_par2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tv_add_article_item_par2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Параграф 2"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_add_article_item_par2"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите текст"
-                android:inputType="textMultiLine"
-                android:minHeight="48dp" />
+                android:hint="Параграф 3"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст">
 
-            <TextView
-                android:id="@+id/tv_add_article_item_par3"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_par3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Параграф 3"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:hint="Параграф 4"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст">
 
-            <EditText
-                android:id="@+id/et_add_article_item_par3"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_par4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите текст"
-                android:inputType="textMultiLine" />
+                android:hint="Параграф 5"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст" >
 
-            <TextView
-                android:id="@+id/tv_add_article_item_par4"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_par5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Параграф 4"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:hint="Параграф 6"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст">
 
-            <EditText
-                android:id="@+id/et_add_article_item_par4"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_par6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите текст"
-                android:inputType="textMultiLine" />
+                android:hint="Параграф 7"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст">
 
-            <TextView
-                android:id="@+id/tv_add_article_item_par5"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_par7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Параграф 5"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:hint="Параграф 8"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Введите текст">
 
-            <EditText
-                android:id="@+id/et_add_article_item_par5"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_item_par8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите текст"
-                android:inputType="textMultiLine" />
+                android:hint="Иконка статьи (заголовок)"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Укажите URL ссылку на картинку">
 
-            <TextView
-                android:id="@+id/tv_add_article_item_par6"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_icon_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ems="10"
+                    android:textSize="20sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Параграф 6"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:hint="Иконка статьи (внутри)"
+                app:hintTextAppearance="@style/TextLabel"
+                app:placeholderText="Укажите URL ссылку на картинку ">
 
-            <EditText
-                android:id="@+id/et_add_article_item_par6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите текст"
-                android:inputType="textMultiLine" />
-
-            <TextView
-                android:id="@+id/tv_add_article_item_par7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Параграф 7"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_add_article_item_par7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите текст"
-                android:inputType="textMultiLine" />
-
-            <TextView
-                android:id="@+id/tv_add_article_item_par8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Параграф 8"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_add_article_item_par8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Введите текст"
-                android:inputType="textMultiLine" />
-
-            <TextView
-                android:id="@+id/tv_add_article_icon_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Иконка статьи (заголовок):"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_add_article_icon_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Укажите ссылку на картинку"
-                android:inputType="textMultiLine" />
-
-            <TextView
-                android:id="@+id/tv_add_article_content_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Иконка статьи (внутри):"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_add_article_content_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:hint="Укажите ссылку на картинку"
-                android:inputType="textMultiLine" />
-
-
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_add_article_content_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="20sp"
+                    android:ems="10"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/article_item_add_button"
