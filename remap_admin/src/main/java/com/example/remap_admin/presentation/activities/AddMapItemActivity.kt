@@ -9,6 +9,7 @@ import android.widget.Switch
 import android.widget.Toast
 import com.example.remap_admin.R
 import com.example.remap_admin.domain.MapItem
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.database.FirebaseDatabase
 
 class AddMapItemActivity : AppCompatActivity() {
@@ -23,14 +24,14 @@ class AddMapItemActivity : AppCompatActivity() {
     private lateinit var etAddMapItemLongitude: EditText
 
     //Switch buttons for MapItem category fields
-    private lateinit var switchAddMapItemEcomob: Switch
-    private lateinit var switchAddMapItemPlastic: Switch
-    private lateinit var switchAddMapItemGlass: Switch
-    private lateinit var switchAddMapItemPaper: Switch
-    private lateinit var switchAddMapItemBatteries: Switch
-    private lateinit var switchAddMapItemClothes: Switch
-    private lateinit var switchAddMapItemLamps: Switch
-    private lateinit var switchAddMapItemMetal: Switch
+    private lateinit var switchAddMapItemEcomob: SwitchMaterial
+    private lateinit var switchAddMapItemPlastic: SwitchMaterial
+    private lateinit var switchAddMapItemGlass: SwitchMaterial
+    private lateinit var switchAddMapItemPaper: SwitchMaterial
+    private lateinit var switchAddMapItemBatteries: SwitchMaterial
+    private lateinit var switchAddMapItemClothes: SwitchMaterial
+    private lateinit var switchAddMapItemLamps: SwitchMaterial
+    private lateinit var switchAddMapItemMetal: SwitchMaterial
     private lateinit var mapItemAddButton: Button
 
     private var database = FirebaseDatabase.getInstance().getReference()
