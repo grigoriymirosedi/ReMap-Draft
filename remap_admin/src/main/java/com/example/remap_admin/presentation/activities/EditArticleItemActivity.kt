@@ -121,14 +121,6 @@ class EditArticleItemActivity : AppCompatActivity() {
             etArticleItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etArticleItemIconImage.text.toString())) {
-            etArticleItemIconImage.setError("Пустая строка")
-            isValid = false
-        }
-        if(TextUtils.isEmpty(etArticleItemContentImage.text.toString())) {
-            etArticleItemContentImage.setError("Пустая строка")
-            isValid = false
-        }
         if(TextUtils.isEmpty(etArticleItemPar1.text.toString())) {
             etArticleItemPar1.setError("Статья должна содержать хотя бы 2 параграфа")
             isValid = false
@@ -138,11 +130,11 @@ class EditArticleItemActivity : AppCompatActivity() {
             isValid = false
         }
         if(TextUtils.isEmpty(etArticleItemIconImage.text.toString())) {
-            etArticleItemIconImage.setError("Ссылка на картинку не может быть пустой")
+            etArticleItemIconImage.setError("Пустая строка")
             isValid = false
         }
         if(TextUtils.isEmpty(etArticleItemContentImage.text.toString())) {
-            etArticleItemContentImage.setError("Ссылка на картинку не может быть пустой")
+            etArticleItemContentImage.setError("Пустая строка")
             isValid = false
         }
 

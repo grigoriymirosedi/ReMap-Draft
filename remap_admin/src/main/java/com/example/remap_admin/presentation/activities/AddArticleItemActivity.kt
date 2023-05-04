@@ -85,11 +85,11 @@ class AddArticleItemActivity : AppCompatActivity() {
             isValid = false
         }
         if(TextUtils.isEmpty(etAddArticleItemPar1.text.toString())) {
-            etAddArticleItemIconImage.setError("Заголовок должен содержать как минимум 2 строки")
+            etAddArticleItemPar1.setError("Заголовок должен содержать как минимум 2 строки")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddArticleItemPar2.text.toString())) {
-            etAddArticleItemContentImage.setError("Заголовок должен содержать как минимум 2 строки")
+            etAddArticleItemPar2.setError("Заголовок должен содержать как минимум 2 строки")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddArticleItemIconImage.text.toString())) {
