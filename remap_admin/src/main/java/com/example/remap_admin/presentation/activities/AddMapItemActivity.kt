@@ -97,27 +97,27 @@ class AddMapItemActivity : AppCompatActivity() {
             etAddMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddMapItemDescription.toString())) {
+        if(TextUtils.isEmpty(etAddMapItemDescription.text.toString())) {
             etAddMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddMapItemAdress.toString())) {
+        if(TextUtils.isEmpty(etAddMapItemAdress.text.toString())) {
             etAddMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddMapItemContacts.toString())) {
+        if(TextUtils.isEmpty(etAddMapItemContacts.text.toString())) {
             etAddMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddMapItemLatitude.toString())) {
+        if(TextUtils.isEmpty(etAddMapItemLatitude.text.toString())) {
             etAddMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddMapItemLongitude.toString())) {
+        if(TextUtils.isEmpty(etAddMapItemLongitude.text.toString())) {
             etAddMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddMapItemOfficeHours.toString())) {
+        if(TextUtils.isEmpty(etAddMapItemOfficeHours.text.toString())) {
             etAddMapItemTitle.setError("Пустая строка")
             isValid = false
         }

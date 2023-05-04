@@ -121,27 +121,27 @@ class EditArticleItemActivity : AppCompatActivity() {
             etArticleItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etArticleItemIconImage.toString())) {
+        if(TextUtils.isEmpty(etArticleItemIconImage.text.toString())) {
             etArticleItemIconImage.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etArticleItemContentImage.toString())) {
+        if(TextUtils.isEmpty(etArticleItemContentImage.text.toString())) {
             etArticleItemContentImage.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etArticleItemPar1.toString())) {
+        if(TextUtils.isEmpty(etArticleItemPar1.text.toString())) {
             etArticleItemPar1.setError("Статья должна содержать хотя бы 2 параграфа")
             isValid = false
         }
-        if(TextUtils.isEmpty(etArticleItemPar2.toString())) {
+        if(TextUtils.isEmpty(etArticleItemPar2.text.toString())) {
             etArticleItemPar2.setError("Статья должна содержать хотя бы 2 параграфа")
             isValid = false
         }
-        if(TextUtils.isEmpty(etArticleItemIconImage.toString())) {
+        if(TextUtils.isEmpty(etArticleItemIconImage.text.toString())) {
             etArticleItemIconImage.setError("Ссылка на картинку не может быть пустой")
             isValid = false
         }
-        if(TextUtils.isEmpty(etArticleItemContentImage.toString())) {
+        if(TextUtils.isEmpty(etArticleItemContentImage.text.toString())) {
             etArticleItemContentImage.setError("Ссылка на картинку не может быть пустой")
             isValid = false
         }

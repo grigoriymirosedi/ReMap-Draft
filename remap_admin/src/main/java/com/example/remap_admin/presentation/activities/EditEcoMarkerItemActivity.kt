@@ -98,23 +98,23 @@ class EditEcoMarkerItemActivity : AppCompatActivity() {
             etEcoMarkerItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etEcoMarkerItemDescription.toString())) {
+        if(TextUtils.isEmpty(etEcoMarkerItemDescription.text.toString())) {
             etEcoMarkerItemDescription.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etEcoMarkerItemExamplesTitle.toString())) {
+        if(TextUtils.isEmpty(etEcoMarkerItemExamplesTitle.text.toString())) {
             etEcoMarkerItemExamplesTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etEcoMarkerItemExamples.toString())) {
+        if(TextUtils.isEmpty(etEcoMarkerItemExamples.text.toString())) {
             etEcoMarkerItemExamples.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etEcoMarkerItemIconURL.toString())) {
+        if(TextUtils.isEmpty(etEcoMarkerItemIconURL.text.toString())) {
             etEcoMarkerItemIconURL.setError("Ссылка не может быть пустой")
             isValid = false
         }
-        if(TextUtils.isEmpty(etEcoMarkerItemContentURL.toString())) {
+        if(TextUtils.isEmpty(etEcoMarkerItemContentURL.text.toString())) {
             etEcoMarkerItemContentURL.setError("Ссылка не может быть пустой")
             isValid = false
         }

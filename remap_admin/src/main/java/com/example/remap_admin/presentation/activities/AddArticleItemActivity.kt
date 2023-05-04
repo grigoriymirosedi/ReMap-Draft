@@ -9,22 +9,23 @@ import android.widget.Toast
 import com.example.remap_admin.R
 import com.example.remap_admin.domain.ArticleItem
 import com.example.remap_admin.domain.MapItem
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.FirebaseDatabase
 
 class AddArticleItemActivity : AppCompatActivity() {
 
     //EdiText for Article item`s fields
-    private lateinit var etAddArticleItemTitle: EditText
-    private lateinit var etAddArticleItemIconImage: EditText
-    private lateinit var etAddArticleItemContentImage: EditText
-    private lateinit var etAddArticleItemPar1: EditText
-    private lateinit var etAddArticleItemPar2: EditText
-    private lateinit var etAddArticleItemPar3: EditText
-    private lateinit var etAddArticleItemPar4: EditText
-    private lateinit var etAddArticleItemPar5: EditText
-    private lateinit var etAddArticleItemPar6: EditText
-    private lateinit var etAddArticleItemPar7: EditText
-    private lateinit var etAddArticleItemPar8: EditText
+    private lateinit var etAddArticleItemTitle: TextInputEditText
+    private lateinit var etAddArticleItemIconImage: TextInputEditText
+    private lateinit var etAddArticleItemContentImage: TextInputEditText
+    private lateinit var etAddArticleItemPar1: TextInputEditText
+    private lateinit var etAddArticleItemPar2: TextInputEditText
+    private lateinit var etAddArticleItemPar3: TextInputEditText
+    private lateinit var etAddArticleItemPar4: TextInputEditText
+    private lateinit var etAddArticleItemPar5: TextInputEditText
+    private lateinit var etAddArticleItemPar6: TextInputEditText
+    private lateinit var etAddArticleItemPar7: TextInputEditText
+    private lateinit var etAddArticleItemPar8: TextInputEditText
     private lateinit var articleItemAddBtn: Button
 
     var database = FirebaseDatabase.getInstance().getReference()
@@ -80,30 +81,22 @@ class AddArticleItemActivity : AppCompatActivity() {
     private fun inputValidate(): Boolean {
         var isValid = true
         if(TextUtils.isEmpty(etAddArticleItemTitle.text.toString())) {
-            etAddArticleItemTitle.setError("Пустая строка")
+            etAddArticleItemTitle.setError("Заголовок не может быть пустой")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddArticleItemIconImage.toString())) {
-            etAddArticleItemIconImage.setError("Пустая строка")
+        if(TextUtils.isEmpty(etAddArticleItemPar1.text.toString())) {
+            etAddArticleItemIconImage.setError("Заголовок должен содержать как минимум 2 строки")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddArticleItemContentImage.toString())) {
-            etAddArticleItemContentImage.setError("Пустая строка")
+        if(TextUtils.isEmpty(etAddArticleItemPar2.text.toString())) {
+            etAddArticleItemContentImage.setError("Заголовок должен содержать как минимум 2 строки")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddArticleItemPar1.toString())) {
-            etAddArticleItemPar1.setError("Статья должна содержать хотя бы 2 параграфа")
-            isValid = false
-        }
-        if(TextUtils.isEmpty(etAddArticleItemPar2.toString())) {
-            etAddArticleItemPar2.setError("Статья должна содержать хотя бы 2 параграфа")
-            isValid = false
-        }
-        if(TextUtils.isEmpty(etAddArticleItemIconImage.toString())) {
+        if(TextUtils.isEmpty(etAddArticleItemIconImage.text.toString())) {
             etAddArticleItemIconImage.setError("Ссылка на картинку не может быть пустой")
             isValid = false
         }
-        if(TextUtils.isEmpty(etAddArticleItemContentImage.toString())) {
+        if(TextUtils.isEmpty(etAddArticleItemContentImage.text.toString())) {
             etAddArticleItemContentImage.setError("Ссылка на картинку не может быть пустой")
             isValid = false
         }

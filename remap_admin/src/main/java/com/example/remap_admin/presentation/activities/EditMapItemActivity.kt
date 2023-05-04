@@ -80,27 +80,27 @@ class EditMapItemActivity : AppCompatActivity() {
             etMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etMapItemDescription.toString())) {
+        if(TextUtils.isEmpty(etMapItemDescription.text.toString())) {
             etMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etMapItemAdress.toString())) {
+        if(TextUtils.isEmpty(etMapItemAdress.text.toString())) {
             etMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etMapItemContacts.toString())) {
+        if(TextUtils.isEmpty(etMapItemContacts.text.toString())) {
             etMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etMapItemLatitude.toString())) {
+        if(TextUtils.isEmpty(etMapItemLatitude.text.toString())) {
             etMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etMapItemLongitude.toString())) {
+        if(TextUtils.isEmpty(etMapItemLongitude.text.toString())) {
             etMapItemTitle.setError("Пустая строка")
             isValid = false
         }
-        if(TextUtils.isEmpty(etMapItemOfficeHours.toString())) {
+        if(TextUtils.isEmpty(etMapItemOfficeHours.text.toString())) {
             etMapItemTitle.setError("Пустая строка")
             isValid = false
         }

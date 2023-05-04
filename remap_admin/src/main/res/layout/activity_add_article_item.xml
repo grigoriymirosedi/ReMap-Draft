@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Заголовок"
+                android:orientation="vertical"
                 app:hintTextAppearance="@style/TextLabel"
                 app:placeholderText="Введите текст">
 
@@ -38,6 +39,7 @@
                     android:ems="10"
                     android:textSize="20sp"
                     tools:ignore="SpeakableTextPresentCheck" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
