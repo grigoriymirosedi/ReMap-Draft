@@ -9,6 +9,7 @@ import android.widget.Switch
 import android.widget.Toast
 import com.example.remap_admin.R
 import com.example.remap_admin.domain.MapItem
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,14 +28,14 @@ class EditMapItemActivity : AppCompatActivity() {
     private lateinit var etMapItemLongitude: EditText
 
     //Switch buttons for MapItem category fields
-    private lateinit var switchMapItemEcomob: Switch
-    private lateinit var switchMapItemPlastic: Switch
-    private lateinit var switchMapItemGlass: Switch
-    private lateinit var switchMapItemPaper: Switch
-    private lateinit var switchMapItemBatteries: Switch
-    private lateinit var switchMapItemClothes: Switch
-    private lateinit var switchMapItemLamps: Switch
-    private lateinit var switchMapItemMetal: Switch
+    private lateinit var switchMapItemEcomob: SwitchMaterial
+    private lateinit var switchMapItemPlastic: SwitchMaterial
+    private lateinit var switchMapItemGlass: SwitchMaterial
+    private lateinit var switchMapItemPaper: SwitchMaterial
+    private lateinit var switchMapItemBatteries: SwitchMaterial
+    private lateinit var switchMapItemClothes: SwitchMaterial
+    private lateinit var switchMapItemLamps: SwitchMaterial
+    private lateinit var switchMapItemMetal: SwitchMaterial
     private lateinit var intentData: MapItem
     private lateinit var mapItemApplyButton: Button
     private lateinit var mapItemMap: HashMap<String, MapItem>
