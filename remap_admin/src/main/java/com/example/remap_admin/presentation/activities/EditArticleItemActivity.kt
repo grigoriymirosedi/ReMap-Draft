@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.example.remap_admin.R
 import com.example.remap_admin.domain.ArticleItem
 import com.example.remap_admin.domain.MapItem
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -18,17 +19,17 @@ import com.google.firebase.database.ValueEventListener
 class EditArticleItemActivity : AppCompatActivity() {
 
     //EdiText for Article item`s fields
-    private lateinit var etArticleItemTitle: EditText
-    private lateinit var etArticleItemIconImage: EditText
-    private lateinit var etArticleItemContentImage: EditText
-    private lateinit var etArticleItemPar1: EditText
-    private lateinit var etArticleItemPar2: EditText
-    private lateinit var etArticleItemPar3: EditText
-    private lateinit var etArticleItemPar4: EditText
-    private lateinit var etArticleItemPar5: EditText
-    private lateinit var etArticleItemPar6: EditText
-    private lateinit var etArticleItemPar7: EditText
-    private lateinit var etArticleItemPar8: EditText
+    private lateinit var etArticleItemTitle: TextInputEditText
+    private lateinit var etArticleItemIconImage: TextInputEditText
+    private lateinit var etArticleItemContentImage: TextInputEditText
+    private lateinit var etArticleItemPar1: TextInputEditText
+    private lateinit var etArticleItemPar2: TextInputEditText
+    private lateinit var etArticleItemPar3: TextInputEditText
+    private lateinit var etArticleItemPar4: TextInputEditText
+    private lateinit var etArticleItemPar5: TextInputEditText
+    private lateinit var etArticleItemPar6: TextInputEditText
+    private lateinit var etArticleItemPar7: TextInputEditText
+    private lateinit var etArticleItemPar8: TextInputEditText
 
     private lateinit var intentData: ArticleItem
     private lateinit var applyArticleItemBtn: Button
