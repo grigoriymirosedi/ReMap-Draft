@@ -63,8 +63,8 @@ class AddEcoMarkerItemActivity : AppCompatActivity() {
 
     private fun inputValidate(): Boolean {
         var isValid = true
-        if(TextUtils.isEmpty(etAddEcoMarkerItemExamplesTitle.text.toString())) {
-            etAddEcoMarkerItemExamplesTitle.setError("Пустая строка")
+        if(TextUtils.isEmpty(etAddEcoMarkerItemTitle.text.toString())) {
+            etAddEcoMarkerItemTitle.setError("Пустая строка")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddEcoMarkerItemDescription.text.toString())) {

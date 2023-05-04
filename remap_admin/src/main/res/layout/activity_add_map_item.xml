@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Название"
+                app:hintTextAppearance="@style/TextLabel"
                 app:placeholderText="Введите название">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_add_map_item_title"
@@ -57,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Адрес"
+                app:hintTextAppearance="@style/TextLabel"
                 app:placeholderText="Введите адрес точки переработки">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_add_map_item_adress"
@@ -72,6 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Часы работы"
+                app:hintTextAppearance="@style/TextLabel"
                 app:placeholderText="Введите часы работы точки переработки">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_add_map_item_office_hours"
@@ -86,7 +89,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Контакты:"
+                android:hint="Контакты"
+                app:hintTextAppearance="@style/TextLabel"
                 app:placeholderText="Введите контакты точки переработки">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_add_map_item_contacts"
@@ -102,6 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Широта"
+                app:hintTextAppearance="@style/TextLabel"
                 app:placeholderText="Введите местоположение точки переработки (широта)">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_add_map_item_latitude"
@@ -117,6 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Долгота"
+                app:hintTextAppearance="@style/TextLabel"
                 app:placeholderText="Введитн местоположение точки переработки (долгота)">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_add_map_item_longitude"

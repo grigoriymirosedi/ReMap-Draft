@@ -95,31 +95,31 @@ class AddMapItemActivity : AppCompatActivity() {
     private fun inputValidate(): Boolean {
         var isValid = true
         if(TextUtils.isEmpty(etAddMapItemTitle.text.toString())) {
-            etAddMapItemTitle.setError("Пустая строка")
+            etAddMapItemTitle.setError("Название не может быть пустым")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddMapItemDescription.text.toString())) {
-            etAddMapItemTitle.setError("Пустая строка")
+            etAddMapItemDescription.setError("Описание не может быть пустым")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddMapItemAdress.text.toString())) {
-            etAddMapItemTitle.setError("Пустая строка")
+            etAddMapItemAdress.setError("Адрес не может быть пустым")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddMapItemContacts.text.toString())) {
-            etAddMapItemTitle.setError("Пустая строка")
+            etAddMapItemContacts.setError("Контакты не могут быть пустыми")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddMapItemLatitude.text.toString())) {
-            etAddMapItemTitle.setError("Пустая строка")
+            etAddMapItemLatitude.setError("Пустая строка")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddMapItemLongitude.text.toString())) {
-            etAddMapItemTitle.setError("Пустая строка")
+            etAddMapItemLongitude.setError("Пустая строка")
             isValid = false
         }
         if(TextUtils.isEmpty(etAddMapItemOfficeHours.text.toString())) {
-            etAddMapItemTitle.setError("Пустая строка")
+            etAddMapItemOfficeHours.setError("Пустая строка")
             isValid = false
         }
         return isValid
