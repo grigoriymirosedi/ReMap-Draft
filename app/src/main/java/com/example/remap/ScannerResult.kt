@@ -48,8 +48,6 @@ class ScannerResult : AppCompatActivity() {
 
     private lateinit var showFullEcoMarkerList: Button
 
-    private lateinit var backPressBtn: ImageButton
-
     private lateinit var notificationsFragment: NotificationsFragment
 
     //private lateinit var ecoMarkersFragmentContainer: FragmentContainer
@@ -81,18 +79,11 @@ class ScannerResult : AppCompatActivity() {
         thirdResultImageView = findViewById(R.id.thirdResultImageView)
         thirdResultTextView = findViewById(R.id.thirdResultTV)
 
-        backPressBtn = findViewById(R.id.backPressBtn)
 
         showFullEcoMarkerList = findViewById(R.id.showFullListBtn)
 
-
-        backPressBtn.setOnClickListener {
-            onBackPressed()
-        }
-
         showFullEcoMarkerList.setOnClickListener {
             hideViews()
-            backPressBtn.visibility = View.VISIBLE
             supportFragmentManager.beginTransaction()
                 .add(R.id.ecoMarkersFragmentContainter, notificationsFragment).addToBackStack(null).commit()
         }
@@ -172,7 +163,6 @@ class ScannerResult : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        backPressBtn.visibility = View.GONE
         supportFragmentManager.beginTransaction().remove(notificationsFragment).commit()
         showView()
         super.onBackPressed()
