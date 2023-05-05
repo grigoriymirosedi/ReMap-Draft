@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ecomarkers_background"
     tools:context=".ui.notifications.NotificationsFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/ecomarkers_background"
         android:foregroundGravity="center"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
