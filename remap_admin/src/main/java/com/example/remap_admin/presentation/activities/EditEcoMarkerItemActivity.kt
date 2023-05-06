@@ -29,7 +29,7 @@ class EditEcoMarkerItemActivity : AppCompatActivity() {
     private lateinit var ecoMarkerItemMap: HashMap<String, EcoMarkerItem>
 
     var database = FirebaseDatabase.getInstance().getReference()
-    var editdb = database.child("TestEcoMarker")
+    var editdb = database.child("EcoMarkersDetails")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class EditEcoMarkerItemActivity : AppCompatActivity() {
 
         ecoMarkerItemMap = HashMap()
         intentData = intent.getParcelableExtra<EcoMarkerItem>("EcoMarker")!!
-        var mapItemQuery = database.child("TestEcoMarker").orderByChild("ecoTitle").equalTo(intentData.ecoTitle)
+        var mapItemQuery = database.child("EcoMarkersDetails").orderByChild("ecoTitle").equalTo(intentData.ecoTitle)
 
         defineEcoMarkerItemViews()
         setEcoMarkerItemData()

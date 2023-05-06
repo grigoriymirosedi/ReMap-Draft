@@ -29,7 +29,7 @@ class AddArticleItemActivity : AppCompatActivity() {
     private lateinit var articleItemAddBtn: Button
 
     var database = FirebaseDatabase.getInstance().getReference()
-    var addArticleItemDB = database.child("TestArticle")
+    var addArticleItemDB = database.child("ArticleDetails")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

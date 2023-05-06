@@ -71,7 +71,7 @@ class EcoMarkerFragment : Fragment(), RecyclerViewInterface {
     }
 
     private fun swipeDeleteMapItem(position: Int) {
-        var ecoMarkerItemDeleteQuery = database.child("TestEcoMarker").orderByChild("ecoTitle").equalTo(ecoMarkerItemAdapter.ecoMarkerList[position].ecoTitle)
+        var ecoMarkerItemDeleteQuery = database.child("EcoMarkersDetails").orderByChild("ecoTitle").equalTo(ecoMarkerItemAdapter.ecoMarkerList[position].ecoTitle)
         ecoMarkerItemDeleteQuery.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(ecoMarkerItemDeleteSnapshot in snapshot.children) {

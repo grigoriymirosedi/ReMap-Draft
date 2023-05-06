@@ -36,7 +36,7 @@ class EditArticleItemActivity : AppCompatActivity() {
     private lateinit var articleItemMap: HashMap<String, ArticleItem>
 
     var database = FirebaseDatabase.getInstance().getReference()
-    var editdb = database.child("TestArticle")
+    var editdb = database.child("ArticleDetails")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +46,7 @@ class EditArticleItemActivity : AppCompatActivity() {
 
         articleItemMap = HashMap()
         intentData = intent.getParcelableExtra<ArticleItem>("Article")!!
-        var articleItemQuery = database.child("TestArticle").orderByChild("articleTitle").equalTo(intentData.articleTitle)
+        var articleItemQuery = database.child("ArticleDetails").orderByChild("articleTitle").equalTo(intentData.articleTitle)
 
         defineArticleItemView()
         setArticleItemData()

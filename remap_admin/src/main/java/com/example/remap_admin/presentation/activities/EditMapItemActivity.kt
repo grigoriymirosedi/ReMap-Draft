@@ -41,7 +41,7 @@ class EditMapItemActivity : AppCompatActivity() {
     private lateinit var mapItemMap: HashMap<String, MapItem>
 
     var database = FirebaseDatabase.getInstance().getReference()
-    var editdb = database.child("Test")
+    var editdb = database.child("Properties")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +50,7 @@ class EditMapItemActivity : AppCompatActivity() {
 
         mapItemMap = HashMap()
         intentData = intent.getParcelableExtra<MapItem>("Property")!!
-        var mapItemQuery = database.child("Test").orderByChild("property_adress").equalTo(intentData.property_adress)
+        var mapItemQuery = database.child("Properties").orderByChild("property_adress").equalTo(intentData.property_adress)
 
         defineMapItemViews()
         setMapItemData()

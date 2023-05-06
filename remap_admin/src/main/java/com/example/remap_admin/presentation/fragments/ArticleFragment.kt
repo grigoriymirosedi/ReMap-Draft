@@ -72,7 +72,7 @@ class ArticleFragment : Fragment(), RecyclerViewInterface {
     }
 
     private fun swipeDeleteArticleItem(position: Int) {
-        var articleItemDeleteQuery = database.child("TestArticle").orderByChild("articleTitle").equalTo(articleItemAdapter.articleList[position].articleTitle)
+        var articleItemDeleteQuery = database.child("ArticleDetails").orderByChild("articleTitle").equalTo(articleItemAdapter.articleList[position].articleTitle)
         articleItemDeleteQuery.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(articleItemDeleteSnapshot in snapshot.children) {

@@ -9,7 +9,7 @@ import com.google.firebase.database.*
 
 object MapListRepositoryImpl: MapListRepository {
 
-    private val mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("Test")
+    private val mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("Properties")
 
     private val mapListLD = MutableLiveData<List<MapItem>>()
     private val mapList = ArrayList<MapItem>()

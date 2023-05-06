@@ -8,7 +8,7 @@ import com.google.firebase.database.*
 
 object ArticleListRepositoryImpl: ArticleListRepository {
 
-    private val mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("TestArticle")
+    private val mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("ArticleDetails")
 
     private val articleListLD = MutableLiveData<List<ArticleItem>>()
     private val articleList = ArrayList<ArticleItem>()

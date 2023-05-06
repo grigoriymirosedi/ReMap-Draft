@@ -9,7 +9,7 @@ import com.google.firebase.database.*
 
 object EcoMarkerRepositoryImpl: EcoMarkerListRepository {
 
-    private val mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("TestEcoMarker")
+    private val mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("EcoMarkersDetails")
 
     private val ecoMarkerListLD = MutableLiveData<List<EcoMarkerItem>>()
     private val ecoMarkerList = ArrayList<EcoMarkerItem>()

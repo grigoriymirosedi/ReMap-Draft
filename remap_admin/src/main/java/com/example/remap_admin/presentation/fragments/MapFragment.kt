@@ -71,7 +71,7 @@ class MapFragment : Fragment(), RecyclerViewInterface {
     }
 
     private fun swipeDeleteMapItem(position: Int) {
-        var mapItemDeleteQuery = database.child("Test").orderByChild("property_adress").equalTo(mapItemAdapter.mapList[position].property_adress)
+        var mapItemDeleteQuery = database.child("Properties").orderByChild("property_adress").equalTo(mapItemAdapter.mapList[position].property_adress)
         mapItemDeleteQuery.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(mapItemDeleteSnapshot in snapshot.children) {

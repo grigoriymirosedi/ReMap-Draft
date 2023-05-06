@@ -22,7 +22,7 @@ class AddEcoMarkerItemActivity : AppCompatActivity() {
     private lateinit var ecoMarkerAddButton: Button
 
     private var database = FirebaseDatabase.getInstance().getReference()
-    private var addEcoMarkerItemDB = database.child("TestEcoMarker")
+    private var addEcoMarkerItemDB = database.child("EcoMarkersDetails")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
