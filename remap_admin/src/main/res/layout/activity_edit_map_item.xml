@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
-                android:text="Изменить"
+                android:text="Применить изменения"
                 android:textSize="18sp" />
 
         </LinearLayout>
