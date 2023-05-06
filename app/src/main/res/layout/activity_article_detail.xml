@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/article_details_color"
+    android:background="@color/article_background"
     tools:context=".ArticleDetails">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/article_details_color"
         tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
@@ -22,114 +23,127 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:text="Эко-мифы"
-                android:textSize="34sp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/article_details_text_color"
+                android:textSize="42sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/articlePar1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="Параграф1"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:paddingEnd="10dp"
+                android:textColor="@color/article_details_text_color"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/articlePar2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Параграф2"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="@color/article_details_text_color"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/articlePar3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Параграф3"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="@color/article_details_text_color"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/articlePar4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Параграф4"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="@color/article_details_text_color"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/articlePar5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Параграф5"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="@color/article_details_text_color"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/articlePar6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Параграф6"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="@color/article_details_text_color"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/articlePar7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text=""
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="@color/article_details_text_color"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/articlePar8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text=""
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="@color/article_details_text_color"
+                android:textSize="26sp"
+                android:textStyle="normal" />
 
             <ImageView
                 android:id="@+id/articleContentImageURL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="30dp"
                 app:srcCompat="@drawable/article_tip_80" />
 
         </LinearLayout>

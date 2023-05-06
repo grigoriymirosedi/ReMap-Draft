@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.remap.models.EcoMarkers
 import com.squareup.picasso.Picasso
 
-class EcoMarkersAdapter(private val ecoMarkersList: ArrayList<EcoMarkers>, private val recyclerViewInterface: RecyclerViewInterface): RecyclerView.Adapter<EcoMarkersAdapter.EcoMarkersViewHolder>() {
+class EcoMarkersAdapter(private var ecoMarkersList: ArrayList<EcoMarkers>, private val recyclerViewInterface: RecyclerViewInterface): RecyclerView.Adapter<EcoMarkersAdapter.EcoMarkersViewHolder>() {
     var recycleViewInterface: RecyclerViewInterface = recyclerViewInterface
 
     class EcoMarkersViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -29,6 +29,11 @@ class EcoMarkersAdapter(private val ecoMarkersList: ArrayList<EcoMarkers>, priva
         holder.itemView.setOnClickListener{
             recycleViewInterface.onItemClick(position)
         }
+    }
+
+    fun filterList(filterList: ArrayList<EcoMarkers>) {
+        ecoMarkersList = filterList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

@@ -23,12 +23,13 @@
                 android:id="@+id/ecoMarkerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:text="Пластик с маркировкой 1, он же PET или ПЭТ (полиэтилентерефталат)"
                 android:textColor="@color/ecomarkers_details_text_color"
-                android:textSize="34sp"
+                android:textSize="42sp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -44,24 +45,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Примеры изделий из ПЭТ:"
                 android:textColor="@color/ecomarkers_details_text_color"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="26sp" />
 
             <TextView
                 android:id="@+id/ecoMarkerExamples"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Примеры упаковок"
                 android:textColor="@color/ecomarkers_details_text_color"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="26sp" />
 
             <TextView
                 android:id="@+id/ecoMarkerDescription"
@@ -69,12 +70,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
+                android:fontFamily="@font/roboto"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Описание"
                 android:textColor="@color/ecomarkers_details_text_color"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="26sp" />
         </LinearLayout>
     </ScrollView>
 

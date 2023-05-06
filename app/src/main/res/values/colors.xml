@@ -18,16 +18,18 @@
 
     <color name="batteries_color">#BBB6DC</color>
 
-    <color name="article_item_color">#FFFFFF</color>
+    <color name="article_background">#fcfdf7</color>
+    <color name="article_item_color">#eff6ed</color>
     <color name="article_item_text_color">#73796C</color>
-    <color name="article_details_color">#F0FDE2</color>
-    <color name="article_details_text_color">#73796C</color>
+    <color name="article_details_color">#fcfdf7</color>
+    <color name="article_details_text_color">#4a4f45</color>
 
     <color name="bottom_sheet_color">#F0FDE2</color>
 
-    <color name="ecomarkers_item_color">#FFFFFF</color>
-    <color name="ecomarkers_details_color">#F0FDE2</color>
-    <color name="ecomarkers_details_text_color">#73796C</color>
+    <color name="ecomarkers_background">#fcfdf7</color>
+    <color name="ecomarkers_item_color">#eff6ed</color>
+    <color name="ecomarkers_details_color">#fcfdf7</color>
+    <color name="ecomarkers_details_text_color">#4a4f45</color>
 
     <color name="infowindow_topbar_color">#86A364</color>
     <color name="infowindow_content_background_color">#E4F4E5</color>
@@ -39,6 +41,10 @@
     <color name="splash_screen_status_bar_color">#005d1c</color>
 
     <color name="status_bar_color">#47AA4E</color>
+    <color name="scanner_result_item_color">#FFFFFF</color>
+    <color name="scanner_result_show_list_button_color">#FFFFFF</color>
+
+    <color name="search_color">#d3e8d2</color>
 
     <color name="navigation_color">#FFFFFF</color>
 </resources>

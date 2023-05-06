@@ -1,27 +1,27 @@
 package com.example.remap.ui.home
 
-import android.app.backup.RestoreObserver
 import android.content.*
-import android.content.Context.CLIPBOARD_SERVICE
+import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.graphics.Point
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.media.ThumbnailUtils
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.remap.databinding.FragmentHomeBinding
-import android.util.Log
-import android.view.ContextMenu
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.view.marginBottom
-import androidx.navigation.fragment.findNavController
+import androidx.core.content.PermissionChecker.checkSelfPermission
 import com.example.remap.R
+import com.example.remap.ScannerResult
+import com.example.remap.ml.TestModel
 import com.example.remap.models.Properties
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -31,15 +31,27 @@ import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.shape.MarkerEdgeTreatment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+import java.util.Scanner
 
 
 class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+
+    companion object {
+        var REQUEST_CODE = 200;
+    }
+
+    var imageSize = 224
+
+    var CAMERA_PERMISSION_CODE = 1;
+
     var mMap: GoogleMap? = null
 
     var INITIALIZE_POSITION = LatLng(47.23,39.72)
@@ -52,7 +64,6 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
     private lateinit var bottomSheetView: View
     private lateinit var bottomSheetName: TextView
     private lateinit var bottomSheetDescription: TextView
-
 
     //Отвечает за Day/Night Mode
     private lateinit var DayNightSwitch: Switch
@@ -81,6 +92,9 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
     private lateinit var filterBtnMetal: Button
     private lateinit var filterBtnLight: Button
 
+    //Отвечает за сканер
+    private lateinit var ScannerButton: ImageButton
+
     //Флаги, которые будут проверять, была ли до этого нажата кнопка
     //и если это так, то при нажатии все фильтры сбросятся и появится карта со всеми метками
     var isClickedBtnEcomob = false
@@ -99,7 +113,6 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
 
         private val window: View = layoutInflater.inflate(R.layout.custom_info_window, null)
         private val contents: View = layoutInflater.inflate(R.layout.custom_info_window, null)
-
 
         override fun getInfoContents(marker: Marker): View? {
             render(marker, window)
@@ -153,7 +166,8 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
         //Initializing map...
         mapFragment.getMapAsync(this)
 
-
+        //Scanner
+        ScannerButton = root.findViewById(R.id.scannerButton)
 
         DayNightSwitch = root.findViewById(R.id.DayNightSwitch)
         DayNightImage = root.findViewById(R.id.DayNightImage)
@@ -161,6 +175,32 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
         isNightModeOn = sharedPreferences.getBoolean("night", false)
 
         initDayNightSwitch()
+
+        if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf<String>(android.Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE);
+        }
+
+        ScannerButton.setOnClickListener {
+            var cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if(cameraIntent.resolveActivity(activity!!.packageManager) != null) {
+                startActivityForResult(cameraIntent, CAMERA_PERMISSION_CODE)
+            }
+        }
+
+        DayNightSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if(isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                DayNightImage.setImageResource(R.drawable.icons8_night_64);
+                editor = sharedPreferences.edit()
+                editor.putBoolean("night", true)
+            } else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                DayNightImage.setImageResource(R.drawable.icons8_sun_64);
+                editor = sharedPreferences.edit()
+                editor.putBoolean("night", false)
+            }
+            editor.apply()
+        }
 
         filterBtnEcomob = root.findViewById(R.id.fBtnEcomob)
         filterBtnEcomob.setOnClickListener(object : View.OnClickListener {
@@ -181,21 +221,6 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                 }
             }
         })
-
-        DayNightSwitch.setOnCheckedChangeListener { compoundButton, isChecked ->
-            if(isChecked){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                DayNightImage.setImageResource(R.drawable.icons8_night_64);
-                editor = sharedPreferences.edit()
-                editor.putBoolean("night", true)
-            } else{
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                DayNightImage.setImageResource(R.drawable.icons8_sun_64);
-                editor = sharedPreferences.edit()
-                editor.putBoolean("night", false)
-            }
-            editor.apply()
-        }
 
         filterBtnPlastic = root.findViewById(R.id.fBtnPlastic)
         filterBtnPlastic.setOnClickListener(object : View.OnClickListener {
@@ -358,8 +383,6 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     override fun onDestroyView() {
@@ -399,31 +422,16 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
         bottomSheetDescription.text = marker.snippet
         dialog.behavior.state = BottomSheetBehavior.STATE_COLLAPSED
         dialog.show()
-        //dialog = BottomSheetDialog(requireContext(), )
-        if (!markerIsClicked ){
+        if (!markerIsClicked){
             lastTouchedMarker = marker
-            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.dark_green_pin_40))
+            marker.setIcon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_dark_40))
             markerIsClicked = !markerIsClicked
         }
         else{
-            lastTouchedMarker?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+            lastTouchedMarker?.setIcon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             lastTouchedMarker = marker
-            marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.dark_green_pin_40))
+            marker.setIcon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_dark_40))
         }
-
-        var container_height = 700;
-
-        var projection = mMap?.getProjection();
-
-        var markerScreenPosition = projection?.toScreenLocation(marker.getPosition());
-        var pointHalfScreenAbove = Point(markerScreenPosition!!.x,(markerScreenPosition!!.y - (container_height / 2)).toInt());
-
-        var aboveMarkerLatLng = projection?.fromScreenLocation(pointHalfScreenAbove);
-
-        marker.showInfoWindow();
-        var center = CameraUpdateFactory.newLatLng(aboveMarkerLatLng!!);
-        mMap?.moveCamera(center);
-
         return true
     }
 
@@ -474,7 +482,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nАдрес: " + property.property_adress
                     )
                     .position(LatLng(property.property_latitude, property.property_longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             )
         }
         if (property.categoryPlastic){
@@ -488,7 +496,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nАдрес: " + property.property_adress
                     )
                     .position(LatLng(property.property_latitude, property.property_longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             )
         }
         if (property.categoryBatteries){
@@ -502,7 +510,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nАдрес: " + property.property_adress
                     )
                     .position(LatLng(property.property_latitude, property.property_longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             )
         }
         if (property.categoryClothes){
@@ -516,7 +524,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nАдрес: " + property.property_adress
                     )
                     .position(LatLng(property.property_latitude, property.property_longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             )
         }
         if (property.categoryGlass){
@@ -530,7 +538,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nАдрес: " + property.property_adress
                     )
                     .position(LatLng(property.property_latitude, property.property_longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             )
         }
         if (property.categoryLamps){
@@ -544,7 +552,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nАдрес: " + property.property_adress
                     )
                     .position(LatLng(property.property_latitude, property.property_longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             )
         }
         if (property.categoryMetal){
@@ -558,7 +566,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nАдрес: " + property.property_adress
                     )
                     .position(LatLng(property.property_latitude, property.property_longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             )
         }
         if (property.categoryPaper){
@@ -572,7 +580,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nАдрес: " + property.property_adress
                     )
                     .position(LatLng(property.property_latitude, property.property_longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40))
             )
         }
 
@@ -596,7 +604,7 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
                                 "\nКонтакты: " + property.property_contacts +
                                 "\nАдрес: " + property.property_adress)
                         .position(LatLng(property.property_latitude, property.property_longitude))
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin_40)))
+                        .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_fmd_good_40)))
                     PropertyFilter(property)
                 }
             }
@@ -605,8 +613,106 @@ class HomeFragment : BottomSheetDialogFragment(), OnMapReadyCallback, GoogleMap.
         })
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
+    fun classifyImage(image: Bitmap) {
+        val model = TestModel.newInstance(requireContext())
+
+        // Creates inputs for reference.
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
+        var byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
+        byteBuffer.order(ByteOrder.nativeOrder())
+
+        var intValues = IntArray(imageSize * imageSize)
+        image.getPixels(intValues, 0, image.width, 0, 0, image.width, image.height)
+        var pixel = 0
+        for(i in 0 until imageSize){
+            for(j in 0 until imageSize){
+                var value = intValues[pixel++]
+                byteBuffer.putFloat((value and 0xFF) * (1f / 255f)) //Blue
+                byteBuffer.putFloat(((value shr 8) and 0xFF) * (1f / 255f)) //Green
+                byteBuffer.putFloat(((value shr 16) and 0xFF) * (1f / 255f)) //Red
+            }
+        }
+
+        inputFeature0.loadBuffer(byteBuffer)
+
+        // Runs model inference and gets result.
+        val outputs = model.process(inputFeature0)
+        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+        var confidences = outputFeature0.floatArray;
+        var maxConfidence = 0f;
+        var maxPos = 0;
+        var predMaxConfidence = 0f;
+        var predMaxPos = 0;
+        var predPredMaxConfidence = 0f;
+        var predPredMaxPos = 0;
+        for(i in 0 until confidences.size){
+            if (confidences[i] > maxConfidence) {
+                predPredMaxConfidence = predMaxConfidence
+                predPredMaxPos = predMaxPos
+                predMaxConfidence = maxConfidence
+                predMaxPos = maxPos
+                maxConfidence = confidences[i]
+                maxPos = i
+            }
+            else if (confidences[i] > predMaxConfidence) {
+                predPredMaxConfidence = predMaxConfidence
+                predPredMaxPos = predMaxPos
+                predMaxConfidence = confidences[i]
+                predMaxPos = i
+            }
+            else if (confidences[i] > predPredMaxConfidence) {
+                predPredMaxConfidence = confidences[i]
+                predPredMaxPos = i
+            }
+        }
+
+        var classes = arrayOf<String>("PET1", "HDPE2", "PVC3", "PELD4", "PP5", "PS6", "OTHER7")
+        //resultTV.text = "Результат: " + classes[maxPos]
+
+        val intent = Intent(requireContext(), ScannerResult::class.java)
+        intent.putExtra("FirstResult", maxPos)
+        intent.putExtra("SecondResult", predMaxPos)
+        intent.putExtra("ThirdResult", predPredMaxPos)
+        startActivity(intent)
+
+        /*val intent = Intent(this, EcoMarkersDetails::class.java)
+        intent.putExtra("MARKER", ecoMarkersArrayList[maxPos])
+        startActivity(intent)*/
+
+        // Releases model resources if no longer used.*/
+        model.close()
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == CAMERA_PERMISSION_CODE) {
+            if (resultCode == AppCompatActivity.RESULT_OK) {
+                var image = data?.extras?.get("data") as? Bitmap
+                var dimension = image?.let { Math.min(it.width, image!!.height) }
+                image = dimension?.let { ThumbnailUtils.extractThumbnail(image, it, dimension) }
+                //imageResult.setImageBitmap(image) тут должна быть картинка, она нам не нужна
+                image = image?.let { Bitmap.createScaledBitmap(it, imageSize, imageSize, false) }
+                if (image != null) {
+                    classifyImage(image)
+                }
+            } else if (resultCode == AppCompatActivity.RESULT_CANCELED) {
+                Log.d("123123", "Cancelled")
+            }
+        }
+        else{
+            Toast.makeText(requireContext(), "Cancelled", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+        return ContextCompat.getDrawable(context, vectorResId)?.run {
+            setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+            val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+            draw(Canvas(bitmap))
+            BitmapDescriptorFactory.fromBitmap(bitmap)
+        }
     }
 
 }
