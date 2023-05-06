@@ -11,4 +11,8 @@
 
 ![ReMap](https://user-images.githubusercontent.com/92877083/236649481-c2f4bdce-ab56-46ff-8bf4-7a5b3ca67bf1.png)
 
+## Интерфейс админ панели
+
+![ReMapAdmin](https://user-images.githubusercontent.com/92877083/236649775-21d6d6fb-c91f-489c-9c80-afd335dd3e91.png)
+
 Минимально поддержимая версия Android для работы с приложением: Android 7.1+
