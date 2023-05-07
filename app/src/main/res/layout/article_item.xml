@@ -1,56 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="false"
-    android:background="?android:attr/selectableItemBackground">
+    android:layout_margin="10dp"
+    android:backgroundTint="@color/article_item_color"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="1dp"
+    app:strokeWidth="0dp">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:backgroundTint="@color/article_item_color"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/image_resource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:srcCompat="@drawable/article_paper_80" />
+
+        <TextView
+            android:id="@+id/title_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:paddingStart="8dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="7dp"
+            android:textColor="@color/article_item_text_color"
+            android:textSize="22sp"
+            android:textStyle="" />
+    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/image_resource"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginStart="3dp"
-                android:layout_weight="0"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                app:srcCompat="@drawable/article_paper_80" />
-
-            <TextView
-                android:id="@+id/title_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_weight="2"
-                android:ellipsize="end"
-                android:paddingEnd="5dp"
-                android:paddingBottom="5dp"
-                android:textColor="@color/article_item_text_color"
-                android:textSize="22sp"
-                android:textStyle=""
-                tools:text="Sample text" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

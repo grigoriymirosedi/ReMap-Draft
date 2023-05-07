@@ -50,7 +50,7 @@
                 android:paddingEnd="20dp"
                 android:text="Примеры изделий из ПЭТ:"
                 android:textColor="@color/ecomarkers_details_text_color"
-                android:textSize="26sp" />
+                android:textSize="34sp" />
 
             <TextView
                 android:id="@+id/ecoMarkerExamples"

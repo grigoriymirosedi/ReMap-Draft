@@ -28,7 +28,7 @@ class ArticleAdapter(private val articleList: ArrayList<Article>, private val re
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val currentItem = articleList[position]
 
-        Picasso.get().load(currentItem.articleIconImageURL).resize(190,0).into(holder.imageResource)
+        Picasso.get().load(currentItem.articleIconImageURL).resize(250,0).into(holder.imageResource)
         holder.textTitle.text = currentItem.articleTitle
 
         holder.itemView.setOnClickListener{
